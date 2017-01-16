@@ -1,30 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
     <meta charset="UTF-8">
     <title>Web Dev Course Home Page</title>
+    <style>
+        .bg1 {
+            background-color: aliceblue;
+            color: #ffffff;
+        }
+        body {
+            position: relative;
+        }
+        ul.nav-pills {
+
+            position: fixed;
+        }
+        div.col-sm-9 div {
+            font-size: 28px;
+        }
+        div.col-md-5 {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 60px;
+        }
+        #hdr {
+            background-color: steelblue;
+        }
+        #section1 {color: #fff; background-color: steelblue;}
+        #section2 {color: #fff; background-color: steelblue;}
+        #section3 {color: #fff; background-color: steelblue;}
+
+        @media screen and (max-width: 810px) {
+            #section1, #section2, #section3 {
+                margin-left: 150px;
+            }
+        }
+    </style>
 </head>
-<body>
-    <h1>Web Dev Course Home Page</h1>
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
+    <div class="bg1">
 
-    <p>
-        Customize this home page to your linking.
-    </p>
+                <div class="container-fixed text-center" id="hdr">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="webdev.jpg" alt="web dev" width="320" height="230">
+                        </div>
+                        <div class="col-md-5">
+                            <h1>Web Dev Course Home Page</h1>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="mypic.JPG" class="img-circle" alt="my pic" width="200" height="200">
+                            <p>I am Darshan Panse</p>
+                        </div>
+                    </div>
+                </div>
 
-    <h2>Required links</h2>
-    <ul>
-        <li>
-            <a href="project/index.html">Project</a>
-        </li>
-        <li>
-            <a href="assignment/index.html">Assignment</a>
-        </li>
-        <li>
-            <a href="test/index.html">Test MongoDB</a>
-        </li>
-        <li>
-            <a href="https://github.com/jannunzi/web-dev-template">Your public repository at GitHub.com</a>
-        </li>
-    </ul>
+
+    <div class="container">
+        <div class="row">
+            <nav class="col-sm-3" id="myScrollspy">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="#section1">Project</a></li>
+                    <li><a href="#section2">Assignment</a></li>
+                    <li><a href="test/index.html">Test MongoDB</a></li>
+                    <li><a href="https://github.com/darshanpanse/panse-darshan-webdev">My github repository</a> </li>
+                </ul>
+            </nav>
+            <div class="col-sm-9">
+                <div id="section1">
+                    <h1>Project</h1>
+                    <p> Lorem ipsum dolor sit amet, aliquet rhoncus vivamus consequat urna in, facilisis sit morbi pulvinar arcu. Orci a aliquam. Sem nunc, arcu vitae eu eu, hendrerit eu praesent. Accumsan varius, justo tortor lobortis et sed sed penatibus, eros sed mollis ac est aenean, tortor semper donec, proin turpis aenean quo fusce lobortis. Nec diam accumsan nam interdum eget. Erat faucibus felis.
+
+                        Ridiculus in eget lorem amet fusce ridiculus, elit lorem justo porttitor in, enim ullamcorper metus luctus pulvinar est, metus sollicitudin sed tortor sed, lorem lorem mauris lorem aliquam facilisis. Sit lorem nulla quis magna, nam nibh magnis urna, eos at ut in egestas. Quis at quisque, hac nulla mauris, adipiscing congue, non ut, sapien nulla mauris amet eligendi integer. Quis diam ipsum libero odio diam natoque, duis fusce egestas habitasse neque, fusce nec nonummy venenatis nulla pellentesque non, phasellus nulla suspendisse sit tincidunt, platea congue egestas massa. Vivamus justo vestibulum enim class vel pellentesque, tellus ac pede morbi ante, vitae purus nunc dignissim, ut tempor viverra mi ut, bibendum praesent erat sapien duis velit enim. Et vivamus donec lacus aliquam, ex nam mattis vestibulum nibh et tristique, hendrerit pretium. Nascetur nullam per urna sapien. Egestas commodo vitae sollicitudin ultricies, non purus vitae ac tortor pharetra imperdiet, lorem lobortis velit, quam veniam, arcu velit odio leo. Duis mi ridiculus ab aliquam. Ullamcorper sed sed eu massa venenatis in. Accumsan placerat lacinia, sed ultricies dolor facilisis sed eros, nam hendrerit faucibus.</p>
+                </div>
+                <div id="section2">
+                    <h1>Assignments</h1>
+                    <p> Lorem ipsum dolor sit amet, aliquet rhoncus vivamus consequat urna in, facilisis sit morbi pulvinar arcu. Orci a aliquam. Sem nunc, arcu vitae eu eu, hendrerit eu praesent. Accumsan varius, justo tortor lobortis et sed sed penatibus, eros sed mollis ac est aenean, tortor semper donec, proin turpis aenean quo fusce lobortis. Nec diam accumsan nam interdum eget. Erat faucibus felis.
+
+                        Ridiculus in eget lorem amet fusce ridiculus, elit lorem justo porttitor in, enim ullamcorper metus luctus pulvinar est, metus sollicitudin sed tortor sed, lorem lorem mauris lorem aliquam facilisis. Sit lorem nulla quis magna, nam nibh magnis urna, eos at ut in egestas. Quis at quisque, hac nulla mauris, adipiscing congue, non ut, sapien nulla mauris amet eligendi integer. Quis diam ipsum libero odio diam natoque, duis fusce egestas habitasse neque, fusce nec nonummy venenatis nulla pellentesque non, phasellus nulla suspendisse sit tincidunt, platea congue egestas massa. Vivamus justo vestibulum enim class vel pellentesque, tellus ac pede morbi ante, vitae purus nunc dignissim, ut tempor viverra mi ut, bibendum praesent erat sapien duis velit enim. Et vivamus donec lacus aliquam, ex nam mattis vestibulum nibh et tristique, hendrerit pretium. Nascetur nullam per urna sapien. Egestas commodo vitae sollicitudin ultricies, non purus vitae ac tortor pharetra imperdiet, lorem lobortis velit, quam veniam, arcu velit odio leo. Duis mi ridiculus ab aliquam. Ullamcorper sed sed eu massa venenatis in. Accumsan placerat lacinia, sed ultricies dolor facilisis sed eros, nam hendrerit faucibus.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 </body>
 </html>
