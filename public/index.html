@@ -66,7 +66,7 @@
                 <ul class="nav nav-pills nav-stacked">
                     <li class="active"><a href="#section1">Project</a></li>
                     <li><a href="#section2">Assignment</a></li>
-                    <li><a href="#section3">Test MongoDB</a></li>
+                    <li><a href="test/index.html">Test MongoDB</a></li>
                     <li><a href="https://github.com/darshanpanse/panse-darshan-webdev">My github repository</a> </li>
                 </ul>
             </nav>
@@ -82,49 +82,6 @@
                     <p> Lorem ipsum dolor sit amet, aliquet rhoncus vivamus consequat urna in, facilisis sit morbi pulvinar arcu. Orci a aliquam. Sem nunc, arcu vitae eu eu, hendrerit eu praesent. Accumsan varius, justo tortor lobortis et sed sed penatibus, eros sed mollis ac est aenean, tortor semper donec, proin turpis aenean quo fusce lobortis. Nec diam accumsan nam interdum eget. Erat faucibus felis.
 
                         Ridiculus in eget lorem amet fusce ridiculus, elit lorem justo porttitor in, enim ullamcorper metus luctus pulvinar est, metus sollicitudin sed tortor sed, lorem lorem mauris lorem aliquam facilisis. Sit lorem nulla quis magna, nam nibh magnis urna, eos at ut in egestas. Quis at quisque, hac nulla mauris, adipiscing congue, non ut, sapien nulla mauris amet eligendi integer. Quis diam ipsum libero odio diam natoque, duis fusce egestas habitasse neque, fusce nec nonummy venenatis nulla pellentesque non, phasellus nulla suspendisse sit tincidunt, platea congue egestas massa. Vivamus justo vestibulum enim class vel pellentesque, tellus ac pede morbi ante, vitae purus nunc dignissim, ut tempor viverra mi ut, bibendum praesent erat sapien duis velit enim. Et vivamus donec lacus aliquam, ex nam mattis vestibulum nibh et tristique, hendrerit pretium. Nascetur nullam per urna sapien. Egestas commodo vitae sollicitudin ultricies, non purus vitae ac tortor pharetra imperdiet, lorem lobortis velit, quam veniam, arcu velit odio leo. Duis mi ridiculus ab aliquam. Ullamcorper sed sed eu massa venenatis in. Accumsan placerat lacinia, sed ultricies dolor facilisis sed eros, nam hendrerit faucibus.</p>
-                </div>
-                <div id="section3">
-                    <h1>Test MongoDB</h1>
-
-                    <div ng-show="model.error"
-                         class="alert alert-danger">
-                        {{model.error}}
-                    </div>
-
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Test Message</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input ng-model="model.message"
-                                       placeholder="message"
-                                       class="form-control"/>
-                            </td>
-                            <td>
-                                <button ng-click="model.createMessage(model.message)"
-                                        class="btn btn-primary pull-right">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </button>
-                            </td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="message in model.messages | reverse">
-                            <td>
-                                {{message.message}}
-                            </td>
-                            <td>
-                                <button ng-click="model.deleteMessage(message)"
-                                        class="btn btn-danger pull-right">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
