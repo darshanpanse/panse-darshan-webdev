@@ -1,7 +1,59 @@
-input.form-control {
-    margin-bottom: 5px;
+html, body{
+    height: 95%;
+    background-color: aliceblue;
 }
 
-body {
-    padding-top: 36px;
+a:hover{
+    text-decoration: none;
+}
+
+.list-group-item{
+    border: none;
+}
+
+#profile-form, #widget-form, #full-list{
+    margin-top: 80px;
+    margin-bottom: 50px;
+}
+
+#list-items{
+    height: inherit;
+    border-right: 1px solid black;
+    overflow: auto;
+}
+
+#id1{
+    margin-top: 80px;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 97%;
+}
+.widget-toolbar {
+    background-color: white;
+    position: absolute;
+    right: 15px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 5px;
+    opacity: 0.7;
+}
+
+.no-right-margin{
+    margin-right: 0px;
+}
+
+.no-left-margin{
+    margin-left: 0px;
+}
+
+.navbar-default{
+    background-color: cornflowerblue;
+}
+
+.navbar-default .navbar-brand{
+    color: white;
+}
+
+.glyphicon-chevron-left, .glyphicon-ok, .glyphicon-plus, .glyphicon-user{
+    color: white;
 }

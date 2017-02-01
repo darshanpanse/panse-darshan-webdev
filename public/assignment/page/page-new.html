@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="../css/style.css" rel="stylesheet"/>
+    <title>New Page</title>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid" >
+        <div class="row">
+            <div class="col-sm-4 container hidden-xs">
+                <ul class="nav navbar-nav pull-left no-left-margin">
+                    <li><a href="page-list.html" class="navbar-link"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                </ul>
+                <p class="navbar-brand">Pages</p>
+                <ul class="nav navbar-nav pull-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-plus"></span></a></li>
+                </ul>
+            </div>
+            <ul class="nav navbar-nav pull-left hidden-sm hidden-md hidden-lg no-left-margin">
+                <li><a href="page-list.html" class="navbar-link"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+            </ul>
+            <p class="navbar-brand">New Page</p>
+            <ul class="nav navbar-nav pull-right no-right-margin">
+                <li><a href="page-list.html"><span class="glyphicon glyphicon-ok"></span></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="row" id="id1">
+    <div class="container col-sm-4 hidden-xs" id="list-items">
+        <div class="list-group">
+            <div class="list-group-item">
+                <a href="../widget/widget-list.html">Blog Post</a>
+                <a href="page-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+            </div>
+            <div class="list-group-item">
+                <a href="../widget/widget-list.html">Blogs</a>
+                <a href="page-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+            </div>
+            <div class="list-group-item">
+                <a href="../widget/widget-list.html">Home</a>
+                <a href="page-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+            </div>
+            <div class="list-group-item">
+                <a href="../widget/widget-list.html">About</a>
+                <a href="page-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+            </div>
+            <div class="list-group-item">
+                <a href="../widget/widget-list.html">Contact Us</a>
+                <a href="page-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container col-sm-8">
+        <div class="form-group">
+            <label for="usr">Name</label>
+            <input type="text" class="form-control" id="usr" placeholder="Page Name">
+        </div>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <textarea class="form-control" rows="5" id="title" placeholder="Page Title"></textarea>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right pull-right">
+            <li><a href="../user/profile.html"><span class="glyphicon glyphicon-user"></span></a></li>
+        </ul>
+    </div>
+</nav>
+
+</body>
+</html>
