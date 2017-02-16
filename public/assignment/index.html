@@ -1,54 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="WebAppMaker">
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no  initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <title>Assignments Home Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
 
-    <style>
-        .bg1 {
-            background-color: aliceblue;
-            color: #ffffff;
-        }
-        div.col-md-5 {
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 60px;
-        }
-        #hdr {
-            background-color: steelblue;
-        }
-        .assignment-link, a:hover{
-            font-size: x-large;
-            margin-top: 30px;
-            text-decoration: none;
-        }
-    </style>
+    <!-- controllers -->
+    <script src="views/user/controllers/user.controller.client.js"></script>
+    <script src="views/page/controllers/page.controller.client.js"></script>
+    <script src="views/website/controllers/website.controller.client.js"></script>
+    <script src="views/widget/controllers/widget.controller.client.js"></script>
+
+    <!-- services -->
+    <script src="services/user.service.client.js"></script>
+    <script src="services/page.service.client.js"></script>
+    <script src="services/website.service.client.js"></script>
+    <script src="services/widget.service.client.js"></script>
+
+    <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
-<div class="bg1">
-    <div class="container-fixed text-center" id="hdr">
-        <div class="row">
-            <div class="col-md-3">
-                <img src="webdev.jpg" alt="web dev" width="320" height="230">
-            </div>
-            <div class="col-md-5">
-                <h1>Assignments Home Page</h1>
-            </div>
-            <div class="col-md-4">
-                <img src="mypic.JPG" class="img-circle" alt="my pic" width="200" height="200">
-                <p>I am Darshan Panse</p>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="assignment-link">
-    <a href="user/login.html">Assignment Link</a>
-</div>
+<div ng-view></div>
 </body>
 </html>

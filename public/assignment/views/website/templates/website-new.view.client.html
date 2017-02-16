@@ -1,0 +1,56 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid" >
+        <div class="row">
+            <div class="col-sm-4 container hidden-xs">
+                <ul class="nav navbar-nav pull-left no-left-margin">
+                    <li><a href="#/user/{{model.userId}}/website" class="navbar-link"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                </ul>
+                <p class="navbar-brand">Websites</p>
+                <ul class="nav navbar-nav pull-right">
+                    <li><a href="#/user/{{model.userId}}/website/new"><span class="glyphicon glyphicon-plus"></span></a></li>
+                </ul>
+            </div>
+            <ul class="nav navbar-nav pull-left hidden-sm hidden-md hidden-lg no-left-margin">
+                <li><a href="#/user/{{model.userId}}/website" class="navbar-link"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+            </ul>
+            <p class="navbar-brand">New Website</p>
+            <ul class="nav navbar-nav pull-right no-right-margin">
+                <li>
+                    <a href="#/user/{{model.userId}}/website">
+                        <span ng-click="model.createWebsite(model.website)" class="glyphicon glyphicon-ok"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="row" id="id1">
+    <div class="container col-sm-4 hidden-xs" id="list-items">
+        <div class="list-group">
+            <div ng-repeat="website in model.websites" class="list-group-item">
+                <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
+                <a href="#/user/{{model.userId}}/website/{{website._id}}"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container col-sm-8">
+        <div class="form-group">
+            <label for="usr">Name</label>
+            <input ng-model="model.website.name" type="text" class="form-control" id="usr" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea ng-model="model.website.description" class="form-control" rows="5" id="description" placeholder="Description"></textarea>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right pull-right">
+            <li><a href="#/user/model.userId"><span class="glyphicon glyphicon-user"></span></a></li>
+        </ul>
+    </div>
+</nav>

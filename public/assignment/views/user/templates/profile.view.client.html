@@ -1,0 +1,54 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <p class="navbar-brand">Profile</p>
+        <ul class="nav navbar-nav navbar-right pull-right">
+            <li><a href="#/user/{{model.userId}}" class="navbar-link">
+                <span ng-click="model.updateUser(model.user)" class="glyphicon glyphicon-ok"></span>
+            </a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container" id="profile-form">
+    <h1>Profile</h1>
+
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+
+    <div ng-show="model.message" class="alert alert-success" role="alert">
+        {{model.message}}
+    </div>
+
+    <form>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input ng-model="model.user.username" type="text" class="form-control" id="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="alice@wonderland.com">
+        </div>
+        <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input ng-model="model.user.firstName" type="text" class="form-control" id="first-name" placeholder="Alice">
+        </div>
+        <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input ng-model="model.user.lastName" type="text" class="form-control" id="last-name" placeholder="Wonderland">
+        </div>
+    </form>
+
+    <a class="btn btn-primary btn-block"
+       href="#/user/{{model.userId}}/website">Websites</a>
+    <a class="btn btn-danger  btn-block"
+       href="#/login">Logout</a>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav pull-right">
+            <li><a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span></a></li>
+        </ul>
+    </div>
+</nav>

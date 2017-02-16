@@ -1,0 +1,59 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav pull-left">
+            <li><a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+        </ul>
+        <p class="navbar-brand">Widgets</p>
+        <ul class="nav navbar-nav navbar-right pull-right">
+            <li><a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link"><span class="glyphicon glyphicon-plus"></span></a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid" id="full-list">
+    <div class="list-group">
+        <div ng-repeat="widget in model.widgets" class="list-group-item">
+            <div ng-switch="widget.widgetType">
+
+                <div class="widget-toolbar">
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                        <span class="glyphicon glyphicon-align-justify pull-right"></span>
+                    </a>
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </div>
+
+                <div ng-switch-when="HEADER">
+                    <ng-include src="model.getWidgetTemplateUrl(widget.widgetType)"></ng-include>
+                </div>
+
+                <div ng-switch-when="IMAGE">
+                    <ng-include src="model.getWidgetTemplateUrl(widget.widgetType)"></ng-include>
+                </div>
+
+                <div ng-switch-when="HTML">
+                    <ng-include src="model.getWidgetTemplateUrl(widget.widgetType)"></ng-include>
+                </div>
+
+                <div ng-switch-when="YOUTUBE">
+                    <ng-include src="model.getWidgetTemplateUrl(widget.widgetType)"></ng-include>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right pull-left">
+            <li><a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/:pid/widget"><span class="glyphicon glyphicon-play"></span></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right pull-left">
+            <li><a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/:pid/widget"><span class="glyphicon glyphicon-eye-open"></span></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right pull-right">
+            <li><a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span></a></li>
+        </ul>
+    </div>
+</nav>
