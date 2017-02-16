@@ -1,7 +1,11 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <ul class="nav navbar-nav pull-left">
-            <li><a href="widget-list.html" class="navbar-link"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+            <li>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </li>
         </ul>
         <p class="navbar-brand">Choose Widget</p>
     </div>
@@ -10,34 +14,16 @@
 <div class="container-fluid" id="full-list">
     <div class="list-group">
         <div class="list-group-item">
-            <a href="widget-heading.html">Header</a>
+            <a ng-click="model.createNewHeader()">Header</a>
         </div>
         <div class="list-group-item">
-            <a href="widget-image.html">Image</a>
+            <a ng-click="model.createNewImage()">Image</a>
         </div>
         <div class="list-group-item">
-            <a href="widget-youtube.html">YouTube</a>
+            <a ng-click="model.createNewYoutube()">YouTube</a>
         </div>
         <div class="list-group-item">
-            <a href="widget-youtube.html">Label</a>
-        </div>
-        <div class="list-group-item">
-            <a href="widget-youtube.html">HTML</a>
-        </div>
-        <div class="list-group-item">
-            <a href="widget-youtube.html">Text Input</a>
-        </div>
-        <div class="list-group-item">
-            <a href="widget-youtube.html">Link</a>
-        </div>
-        <div class="list-group-item">
-            <a href="widget-youtube.html">Button</a>
-        </div>
-        <div class="list-group-item">
-            <a href="widget-youtube.html">Data Table</a>
-        </div>
-        <div class="list-group-item">
-            <a href="widget-youtube.html">Repeater</a>
+            <a ng-click="model.createNewHtml()">HTML</a>
         </div>
     </div>
 </div>
@@ -45,7 +31,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <ul class="nav navbar-nav pull-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span></a></li>
+            <li><a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span></a></li>
         </ul>
     </div>
 </nav>

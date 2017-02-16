@@ -32,7 +32,10 @@
         return api;
 
         function createWidget(pageId, widget) {
-
+            widget._id = (new Date()).getTime();
+            widget.pageId = pageId;
+            widgets.push(widget);
+            return angular.copy(widget);
         }
 
         function findWidgetsByPageId(pageId) {
@@ -51,7 +54,7 @@
         function findWidgetById(widgetId) {
 
             for(var wd in widgets) {
-                if(widgets[wd]._id === widgetId) {
+                if(widgets[wd]._id == widgetId) {
                     return angular.copy(widgets[wd]);
                 }
             }
@@ -74,7 +77,6 @@
                         return angular.copy(widgets[wd]);
                     }
                     if(widgets[wd].widgetType === "HTML") {
-                        widgets[wd].size = widget.size;
                         widgets[wd].text = widget.text;
                         return angular.copy(widgets[wd]);
                     }
