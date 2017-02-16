@@ -57,30 +57,26 @@
         }
 
         function createNewHeader(){
-                var newWidget = {"_id": "", "widgetType": "HEADER", "pageId": "", "size": "", "text": ""};
-                vm.widget = WidgetService.createWidget(vm.pageId, newWidget);
-                console.log(vm.widget);
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widget._id);
+            var newWidget = {"_id": "", "widgetType": "HEADER", "pageId": "", "size": "", "text": ""};
+            vm.widget = WidgetService.createWidget(vm.pageId, newWidget);
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widget._id);
         }
 
         function createNewHtml(){
             var newWidget = {"_id": "", "widgetType": "HTML", "pageId": "", "size": "", "text": ""};
             vm.widget = WidgetService.createWidget(vm.pageId, newWidget);
-            console.log(vm.widget);
             $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widget._id);
         }
 
         function createNewImage(){
             var newWidget = {"_id": "", "widgetType": "IMAGE", "pageId": "", "size": "", "text": ""};
             vm.widget = WidgetService.createWidget(vm.pageId, newWidget);
-            console.log(vm.widget);
             $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widget._id);
         }
 
         function createNewYoutube(){
             var newWidget = {"_id": "", "widgetType": "YOUTUBE", "pageId": "", "size": "", "text": ""};
             vm.widget = WidgetService.createWidget(vm.pageId, newWidget);
-            console.log(vm.widget);
             $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widget._id);
         }
     }
@@ -97,15 +93,10 @@
             vm.pageId = $routeParams['pid'];
             vm.widgetId = $routeParams['wgid'];
             vm.widget = WidgetService.findWidgetById(vm.widgetId);
-            console.log(vm.userId);
-            console.log(vm.websiteId);
-            console.log(vm.pageId);
-            console.log(vm.widgetId);
         }
         init();
 
         function getEditorTemplateUrl(type) {
-            console.log(type);
             return 'views/widget/templates/editors/widget-'+type+'-editor.view.client.html';
         }
 
