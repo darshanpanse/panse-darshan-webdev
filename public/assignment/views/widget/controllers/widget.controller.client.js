@@ -66,7 +66,7 @@
 
         function createNewHeader(){
 
-            var newWidget = {"_id": (new Date()).getTime().toString(), "widgetType": "HEADER", "pageId": "", "size": "", "text": ""};
+            var newWidget = {"_id": (new Date()).getTime().toString(), "widgetType": "HEADER", "pageId": "", "size": "1", "text": "Header"};
             WidgetService
                 .createWidget(vm.pageId, newWidget)
                 .success(function () {
@@ -78,7 +78,7 @@
         }
 
         function createNewHtml(){
-            var newWidget = {"_id": (new Date()).getTime().toString(), "widgetType": "HTML", "pageId": "", "size": "", "text": ""};
+            var newWidget = {"_id": (new Date()).getTime().toString(), "widgetType": "HTML", "pageId": "", "size": "", "text": "HTML"};
             WidgetService
                 .createWidget(vm.pageId, newWidget)
                 .success(function () {
@@ -90,7 +90,7 @@
         }
 
         function createNewImage(){
-            var newWidget = {"_id": (new Date()).getTime().toString(), "widgetType": "IMAGE", "pageId": "", "size": "", "text": ""};
+            var newWidget = {"_id": (new Date()).getTime().toString(), "widgetType": "IMAGE", "pageId": "", "size": "100%", "text": ""};
             WidgetService
                 .createWidget(vm.pageId, newWidget)
                 .success(function () {
