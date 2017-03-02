@@ -20,7 +20,15 @@
             vm.userId = $routeParams['uid'];
             vm.websiteId = $routeParams['wid'];
             vm.pageId = $routeParams['pid'];
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
+
+            WidgetService
+                .findWidgetsByPageId(vm.pageId)
+                .success(function (widgets) {
+                    vm.widgets = widgets;
+                })
+                .error(function () {
+                    vm.error = "No widgets to display";
+                });
         }
         init();
 
@@ -43,41 +51,66 @@
 
     function NewWidgetController($location, $routeParams, WidgetService) {
         var vm = this;
-        vm.userId = $routeParams['uid'];
-        vm.websiteId = $routeParams['wid'];
-        vm.pageId = $routeParams['pid'];
-        vm.getEditorTemplateUrl = getEditorTemplateUrl;
+
         vm.createNewHeader = createNewHeader;
         vm.createNewHtml = createNewHtml;
         vm.createNewImage = createNewImage;
         vm.createNewYoutube = createNewYoutube;
 
-        function getEditorTemplateUrl(type) {
-            vm.url = 'views/widget/templates/editors/widget-'+type+'-editor.view.client.html';
+        function init() {
+            vm.userId = $routeParams['uid'];
+            vm.websiteId = $routeParams['wid'];
+            vm.pageId = $routeParams['pid'];
         }
+        init();
 
         function createNewHeader(){
-            var newWidget = {"_id": "", "widgetType": "HEADER", "pageId": "", "size": "", "text": ""};
-            vm.widget = WidgetService.createWidget(vm.pageId, newWidget);
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widget._id);
+
+            var newWidget = {"_id": (new Date()).getTime().toString(), "widgetType": "HEADER", "pageId": "", "size": "", "text": ""};
+            WidgetService
+                .createWidget(vm.pageId, newWidget)
+                .success(function () {
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+newWidget._id);
+                })
+                .error(function () {
+                    vm.error = "Could not create new widget, Server not responding";
+                });
         }
 
         function createNewHtml(){
-            var newWidget = {"_id": "", "widgetType": "HTML", "pageId": "", "size": "", "text": ""};
-            vm.widget = WidgetService.createWidget(vm.pageId, newWidget);
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widget._id);
+            var newWidget = {"_id": (new Date()).getTime().toString(), "widgetType": "HTML", "pageId": "", "size": "", "text": ""};
+            WidgetService
+                .createWidget(vm.pageId, newWidget)
+                .success(function () {
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+newWidget._id);
+                })
+                .error(function () {
+                    vm.error = "Could not create new widget, Server not responding";
+                });
         }
 
         function createNewImage(){
-            var newWidget = {"_id": "", "widgetType": "IMAGE", "pageId": "", "size": "", "text": ""};
-            vm.widget = WidgetService.createWidget(vm.pageId, newWidget);
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widget._id);
+            var newWidget = {"_id": (new Date()).getTime().toString(), "widgetType": "IMAGE", "pageId": "", "size": "", "text": ""};
+            WidgetService
+                .createWidget(vm.pageId, newWidget)
+                .success(function () {
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+newWidget._id);
+                })
+                .error(function () {
+                    vm.error = "Could not create new widget, Server not responding";
+                });
         }
 
         function createNewYoutube(){
-            var newWidget = {"_id": "", "widgetType": "YOUTUBE", "pageId": "", "size": "", "text": ""};
-            vm.widget = WidgetService.createWidget(vm.pageId, newWidget);
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widget._id);
+            var newWidget = {"_id": (new Date()).getTime().toString(), "widgetType": "YOUTUBE", "pageId": "", "size": "", "text": ""};
+            WidgetService
+                .createWidget(vm.pageId, newWidget)
+                .success(function () {
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+newWidget._id);
+                })
+                .error(function () {
+                    vm.error = "Could not create new widget, Server not responding";
+                });
         }
     }
 
@@ -92,21 +125,40 @@
             vm.websiteId = $routeParams['wid'];
             vm.pageId = $routeParams['pid'];
             vm.widgetId = $routeParams['wgid'];
-            vm.widget = WidgetService.findWidgetById(vm.widgetId);
+
+            WidgetService
+                .findWidgetById(vm.widgetId)
+                .success(function (widget) {
+                    vm.widget = widget;
+                })
+                .error(function () {
+                    vm.error = "Could not find widget, Server not responding";
+                });
         }
         init();
 
         function getEditorTemplateUrl(type) {
+            console.log(type);
             return 'views/widget/templates/editors/widget-'+type+'-editor.view.client.html';
         }
 
         function updateWidget(newWidget) {
-            var widget = WidgetService.updateWidget(vm.widgetId, newWidget);
+            WidgetService
+                .updateWidget(vm.widgetId, newWidget)
+                .error(function () {
+                    vm.error = "Could not edit widget";
+                });
         }
 
         function deleteWidget() {
-            WidgetService.deleteWidget(vm.widgetId);
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+            WidgetService
+                .deleteWidget(vm.widgetId)
+                .success(function () {
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+                })
+                .error(function () {
+                    vm.error = "Could not delete widget, Server not responding";
+                });
         }
     }
 })();

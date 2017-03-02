@@ -1,7 +1,3 @@
-/**
- * Created by darshan on 2/10/17.
- */
-
 (function () {
     angular
         .module("WebAppMaker")
@@ -15,29 +11,51 @@
         function init() {
             vm.userId = $routeParams['uid'];
             vm.websiteId = $routeParams['wid'];
-            vm.pageList = PageService.findPageByWebsiteId(vm.websiteId);
+
+            PageService
+                .findPageByWebsiteId(vm.websiteId)
+                .success(function (pages) {
+                    vm.pageList = pages;
+                })
+                .error(function () {
+                    vm.message = "No Pages to display";
+                });
         }
         init();
     }
 
     function NewPageController($routeParams, PageService) {
         var vm = this;
+
         vm.createPage = createPage;
 
         function init() {
             vm.userId = $routeParams['uid'];
             vm.websiteId = $routeParams['wid'];
-            vm.pageList = PageService.findPageByWebsiteId(vm.websiteId);
+
+            PageService
+                .findPageByWebsiteId(vm.websiteId)
+                .success(function (pages) {
+                    vm.pageList = pages;
+                })
+                .error(function () {
+                    vm.message = "No Pages to display";
+                });
         }
         init();
 
         function createPage(newPage) {
-            PageService.createPage(vm.websiteId, newPage);
+            PageService
+                .createPage(vm.websiteId, newPage)
+                .error(function () {
+                    vm.error = "Could not create new page, Server not responding";
+                });
         }
     }
 
     function EditPageController($location, $routeParams, PageService) {
         var vm = this;
+
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
 
@@ -45,18 +63,44 @@
             vm.userId = $routeParams['uid'];
             vm.websiteId = $routeParams['wid'];
             vm.pageId = $routeParams['pid'];
-            vm.pageList = PageService.findPageByWebsiteId(vm.websiteId);
-            vm.page = PageService.findPageById(vm.pageId);
+
+            PageService
+                .findPageByWebsiteId(vm.websiteId)
+                .success(function (pages) {
+                    vm.pageList = pages;
+                })
+                .error(function () {
+                    vm.message = "No Pages to display";
+                });
+
+            PageService
+                .findPageById(vm.pageId)
+                .success(function (page) {
+                    vm.page = page;
+                });
         }
         init();
 
         function updatePage(newPage) {
-            var page = PageService.updatePage(vm.pageId, newPage);
+            PageService
+                .updatePage(vm.pageId, newPage)
+                .success(function () {
+                    vm.message = "Page updated successfully";
+                })
+                .error(function () {
+                    vm.error = "Page not updated!";
+                });
         }
 
         function deletePage() {
-            PageService.deletePage(vm.pageId);
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+            PageService
+                .deletePage(vm.pageId)
+                .success(function () {
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                })
+                .error(function () {
+                    vm.error = "Could not delete Page, Server not responding";
+                });
         }
     }
 })();

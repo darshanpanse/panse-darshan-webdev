@@ -1,7 +1,3 @@
-/**
- * Created by darshan on 2/9/17.
- */
-
 (function () {
     angular
         .module("WebAppMaker")
@@ -14,13 +10,14 @@
         vm.login = login;
 
         function login(user) {
-            var loginUser = UserService.findUserByCredentials(user.username, user.password);
-            if(loginUser != null) {
-                $location.url("/user/" + loginUser._id);
-            }
-            else {
-                vm.alert = "Unable to login";
-            }
+            var promise = UserService.findUserByCredentials(user.username, user.password);
+            promise
+                .success(function (loginUser) {
+                    $location.url("/user/" + loginUser._id);
+                })
+                .error(function () {
+                    vm.alert = "Unable to login";
+                });
         }
     }
 
@@ -29,35 +26,57 @@
         vm.register = register;
 
         function register(newUser) {
-            var user = UserService.createUser(newUser);
-            if(user != null) {
-                $location.url("/user/" + user._id);
-            }
-            else {
-                vm.alert = "Unable to register!"
-            }
+            UserService
+                .findUserByUsername(newUser.username)
+                .success(function (user) {
+                    vm.error = "Username is already taken"
+                })
+                .error(function () {
+                    UserService
+                        .createUser(newUser)
+                        .success(function (user) {
+                            $location.url('/user/' + user._id);
+                        })
+                });
         }
     }
 
-    function ProfileController($routeParams, UserService) {
+    function ProfileController($routeParams, UserService, $location) {
         var vm = this;
         vm.updateUser = updateUser;
-
-        vm.userId = $routeParams["uid"];
+        vm.deleteUser = deleteUser;
 
         function init() {
-            vm.user = UserService.findUserById(vm.userId);
+            vm.userId = $routeParams["uid"];
+
+            var promise = UserService.findUserById(vm.userId);
+            promise.success(function (loginUser) {
+                vm.user = loginUser;
+            });
         }
         init();
 
         function updateUser(newUser) {
-            var user = UserService.updateUser(vm.userId, newUser);
-            if(user != null) {
-                vm.message = "User Updated Successfully!";
-            }
-            else {
-                vm.error = "User not updated!";
-            }
+            UserService
+                .updateUser(vm.userId, newUser)
+                .success(function () {
+                    vm.message = "User Updated Successfully!";
+                })
+                .error(function () {
+                    vm.error = "User not updated!";
+                });
+
+        }
+
+        function deleteUser() {
+            UserService
+                .deleteUser(vm.userId)
+                .success(function () {
+                    $location.url("/login");
+                })
+                .error(function () {
+                    vm.error = "Could not delete account";
+                });
         }
     }
 })();

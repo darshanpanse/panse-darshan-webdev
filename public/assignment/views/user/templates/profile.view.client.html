@@ -41,8 +41,10 @@
 
     <a class="btn btn-primary btn-block"
        href="#/user/{{model.userId}}/website">Websites</a>
+    <a type="button" class="btn btn-warning btn-block"
+        href="#/login">Logout</a>
     <a class="btn btn-danger  btn-block"
-       href="#/login">Logout</a>
+       ng-click="model.deleteUser()">Delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

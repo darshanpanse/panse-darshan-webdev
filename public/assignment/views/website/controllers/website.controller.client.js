@@ -1,7 +1,3 @@
-/**
- * Created by darshan on 2/10/17.
- */
-
 (function () {
     angular
         .module("WebAppMaker")
@@ -14,52 +10,94 @@
 
         function init() {
             vm.userId = $routeParams['uid'];
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+
+            WebsiteService
+                .findWebsitesByUser(vm.userId)
+                .success(function (websites) {
+                    vm.websites = websites;
+                })
+                .error(function () {
+                    vm.message = "No websites to display";
+                    console.log(vm.message);
+                });
         }
         init();
     }
 
     function NewWebsiteController($routeParams, WebsiteService) {
         var vm = this;
+
         vm.createWebsite = createWebsite;
 
         function init() {
             vm.userId = $routeParams['uid'];
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+
+            WebsiteService
+                .findWebsitesByUser(vm.userId)
+                .success(function (websites) {
+                    vm.websites = websites;
+                })
+                .error(function () {
+                    vm.message = "No websites to display";
+                });
         }
         init();
 
         function createWebsite(newWebsite) {
-            WebsiteService.createWebsite(vm.userId, newWebsite);
+            WebsiteService
+                .createWebsite(vm.userId, newWebsite)
+                .error(function () {
+                    vm.error = "Could not create new Website, Server not responding"
+                });
         }
     }
 
     function EditWebsiteController($location, $routeParams, WebsiteService) {
         var vm = this;
+
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
 
         function init() {
             vm.userId = $routeParams['uid'];
             vm.websiteId = $routeParams["wid"];
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
+
+            WebsiteService
+                .findWebsitesByUser(vm.userId)
+                .success(function (websites) {
+                    vm.websites = websites;
+                })
+                .error(function () {
+                    vm.message = "No websites to display";
+                });
+            WebsiteService
+                .findWebsiteById(vm.websiteId)
+                .success(function (website) {
+                    vm.website = website;
+                });
         }
         init();
 
         function updateWebsite(newWebsite) {
-            var website = WebsiteService.updateWebsite(vm.websiteId, newWebsite);
-            if(website != null) {
-                vm.message = "Website Updated Successfully!";
-            }
-            else {
-                vm.error = "Website not updated!";
-            }
+            WebsiteService
+                .updateWebsite(vm.websiteId, newWebsite)
+                .success(function () {
+                    vm.message = "Website Updated Successfully!";
+                })
+                .error(function () {
+                    vm.error = "Website not updated!";
+                });
         }
 
         function deleteWebsite () {
-            WebsiteService.deleteWebsite(vm.websiteId);
-            $location.url("/user/"+vm.userId+"/website");
-        };
+            WebsiteService
+                .deleteWebsite(vm.websiteId)
+                .success(function () {
+                    $location.url("/user/"+vm.userId+"/website");
+                })
+                .error(function () {
+                    vm.error = "Could not delete website, Server not responding";
+                });
+        }
     }
 })();

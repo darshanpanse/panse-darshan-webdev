@@ -11,11 +11,11 @@
 </nav>
 
 <div class="container-fluid" id="full-list">
-    <div class="list-group">
+    <div class="list-group" wbdv-sortable="">
         <div ng-repeat="widget in model.widgets" class="list-group-item">
             <div ng-switch="widget.widgetType">
 
-                <div class="widget-toolbar">
+                <div class="widget-toolbar handle">
                     <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                         <span class="glyphicon glyphicon-align-justify pull-right"></span>
                     </a>
