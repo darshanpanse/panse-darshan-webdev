@@ -138,7 +138,6 @@
         init();
 
         function getEditorTemplateUrl(type) {
-            console.log(type);
             return 'views/widget/templates/editors/widget-'+type+'-editor.view.client.html';
         }
 
