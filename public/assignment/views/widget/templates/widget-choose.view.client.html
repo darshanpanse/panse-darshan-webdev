@@ -14,16 +14,19 @@
 <div class="container-fluid" id="full-list">
     <div class="list-group">
         <div class="list-group-item">
-            <a ng-click="model.createNewHeader()">Header</a>
+            <a ng-click="model.createWidget('HEADING')">Header</a>
         </div>
         <div class="list-group-item">
-            <a ng-click="model.createNewImage()">Image</a>
+            <a ng-click="model.createWidget('IMAGE')">Image</a>
         </div>
         <div class="list-group-item">
-            <a ng-click="model.createNewYoutube()">YouTube</a>
+            <a ng-click="model.createWidget('YOUTUBE')">YouTube</a>
         </div>
         <div class="list-group-item">
-            <a ng-click="model.createNewHtml()">HTML</a>
+            <a ng-click="model.createWidget('HTML')">HTML</a>
+        </div>
+        <div class="list-group-item">
+            <a ng-click="model.createWidget('TEXT')">Text</a>
         </div>
     </div>
 </div>

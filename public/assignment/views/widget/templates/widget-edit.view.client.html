@@ -1,3 +1,25 @@
-<div class="container-fluid"
-     ng-include="model.getEditorTemplateUrl(model.widget.widgetType)">
+<!--<div class="container-fluid"-->
+     <!--ng-include="model.getEditorTemplateUrl(model.widget.type)">-->
+<!--</div>-->
+
+<div class="container-fluid" ng-switch="model.widget.type">
+    <div ng-switch-when="HEADING">
+        <ng-include src="model.getEditorTemplateUrl(model.widget.type)"></ng-include>
+    </div>
+
+    <div ng-switch-when="IMAGE">
+        <ng-include src="model.getEditorTemplateUrl(model.widget.type)"></ng-include>
+    </div>
+
+    <div ng-switch-when="HTML">
+        <ng-include src="model.getEditorTemplateUrl(model.widget.type)"></ng-include>
+    </div>
+
+    <div ng-switch-when="YOUTUBE">
+        <ng-include src="model.getEditorTemplateUrl(model.widget.type)"></ng-include>
+    </div>
+
+    <div ng-switch-when="TEXT">
+        <ng-include src="model.getEditorTemplateUrl(model.widget.type)"></ng-include>
+    </div>
 </div>

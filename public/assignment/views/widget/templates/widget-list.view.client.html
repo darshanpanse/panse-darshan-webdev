@@ -11,33 +11,46 @@
 </nav>
 
 <div class="container-fluid" id="full-list">
+
+    <div ng-show="model.message" class="alert alert-danger" role="alert">
+        {{model.message}}
+    </div>
+
     <div class="list-group" wbdv-sortable="">
         <div ng-repeat="widget in model.widgets" class="list-group-item">
-            <div ng-switch="widget.widgetType">
+            <div ng-switch="widget.type">
 
-                <div class="widget-toolbar handle">
+                <div class="widget-toolbar">
                     <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
-                        <span class="glyphicon glyphicon-align-justify pull-right"></span>
+                        <span class="glyphicon glyphicon-align-justify pull-right handle"></span>
                     </a>
                     <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>
 
-                <div ng-switch-when="HEADER">
-                    <ng-include src="model.getWidgetTemplateUrl(widget.widgetType)"></ng-include>
+                <div ng-switch-when="HEADING">
+                    <ng-include src="model.getWidgetTemplateUrl(widget.type)"></ng-include>
                 </div>
 
                 <div ng-switch-when="IMAGE">
-                    <ng-include src="model.getWidgetTemplateUrl(widget.widgetType)"></ng-include>
+                    <ng-include src="model.getWidgetTemplateUrl(widget.type)"></ng-include>
                 </div>
 
                 <div ng-switch-when="HTML">
-                    <ng-include src="model.getWidgetTemplateUrl(widget.widgetType)"></ng-include>
+                    <ng-include src="model.getWidgetTemplateUrl(widget.type)"></ng-include>
                 </div>
 
-                <div ng-switch-when="YOUTUBE">
-                    <ng-include src="model.getWidgetTemplateUrl(widget.widgetType)"></ng-include>
+                <div style="width: {{widget.width}}">
+                    <div ng-switch-when="YOUTUBE">
+                        <div class="youtube-widget">
+                            <ng-include src="model.getWidgetTemplateUrl(widget.type)"></ng-include>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-switch-when="TEXT">
+                    <ng-include src="model.getWidgetTemplateUrl(widget.type)"></ng-include>
                 </div>
             </div>
         </div>

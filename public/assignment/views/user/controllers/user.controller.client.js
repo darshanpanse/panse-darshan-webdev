@@ -10,14 +10,26 @@
         vm.login = login;
 
         function login(user) {
-            var promise = UserService.findUserByCredentials(user.username, user.password);
-            promise
-                .success(function (loginUser) {
-                    $location.url("/user/" + loginUser._id);
-                })
-                .error(function () {
-                    vm.alert = "Unable to login";
-                });
+            console.log(user);
+            if (user.username == "" && user.password != "") {
+                vm.alert = "Username cannot be empty";
+            }
+            else if (user.password == "" && user.username != "") {
+                vm.alert = "Password cannot be empty";
+            }
+            else if(user.username == "" && user.password == "") {
+                vm.alert = "Username and Password cannot be empty";
+            }
+            else {
+                var promise = UserService.findUserByCredentials(user.username, user.password);
+                promise
+                    .success(function (loginUser) {
+                        $location.url("/user/" + loginUser._id);
+                    })
+                    .error(function () {
+                        vm.alert = "Unable to login";
+                    });
+            }
         }
     }
 
@@ -26,18 +38,25 @@
         vm.register = register;
 
         function register(newUser) {
-            UserService
-                .findUserByUsername(newUser.username)
-                .success(function (user) {
-                    vm.error = "Username is already taken"
-                })
-                .error(function () {
-                    UserService
-                        .createUser(newUser)
-                        .success(function (user) {
-                            $location.url('/user/' + user._id);
-                        })
-                });
+            if(newUser.password === newUser.verifyPassword) {
+                UserService
+                    .findUserByUsername(newUser.username)
+                    .success(function (user) {
+                        vm.error = "Username is already taken"
+                    })
+                    .error(function () {
+                        UserService
+                            .createUser(newUser)
+                            .success(function (user) {
+                                $location.url('/user/' + user._id);
+                            })
+                            .error(function () {
+                                vm.error = "Could not Register User. Server not responding!"
+                            })
+                    });
+            } else {
+                vm.error = "Passwords do not match";
+            }
         }
     }
 

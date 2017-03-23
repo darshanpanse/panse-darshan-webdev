@@ -1,7 +1,3 @@
-/**
- * Created by darshan on 2/10/17.
- */
-
 (function () {
     angular
         .module("WebAppMaker")
@@ -27,7 +23,7 @@
                     vm.widgets = widgets;
                 })
                 .error(function () {
-                    vm.error = "No widgets to display";
+                    vm.message = "No widgets to display";
                 });
         }
         init();
@@ -52,10 +48,7 @@
     function NewWidgetController($location, $routeParams, WidgetService) {
         var vm = this;
 
-        vm.createNewHeader = createNewHeader;
-        vm.createNewHtml = createNewHtml;
-        vm.createNewImage = createNewImage;
-        vm.createNewYoutube = createNewYoutube;
+        vm.createWidget = createWidget;
 
         function init() {
             vm.userId = $routeParams['uid'];
@@ -64,48 +57,11 @@
         }
         init();
 
-        function createNewHeader(){
-
-            var newWidget = {"_id": (new Date()).getTime().toString(), "widgetType": "HEADER", "pageId": "", "size": "1", "text": "Header"};
+        function createWidget(widgetType) {
+            var newWidget = {type: widgetType};
             WidgetService
                 .createWidget(vm.pageId, newWidget)
-                .success(function () {
-                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+newWidget._id);
-                })
-                .error(function () {
-                    vm.error = "Could not create new widget, Server not responding";
-                });
-        }
-
-        function createNewHtml(){
-            var newWidget = {"_id": (new Date()).getTime().toString(), "widgetType": "HTML", "pageId": "", "size": "", "text": "HTML"};
-            WidgetService
-                .createWidget(vm.pageId, newWidget)
-                .success(function () {
-                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+newWidget._id);
-                })
-                .error(function () {
-                    vm.error = "Could not create new widget, Server not responding";
-                });
-        }
-
-        function createNewImage(){
-            var newWidget = {"_id": (new Date()).getTime().toString(), "widgetType": "IMAGE", "pageId": "", "size": "100%", "text": ""};
-            WidgetService
-                .createWidget(vm.pageId, newWidget)
-                .success(function () {
-                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+newWidget._id);
-                })
-                .error(function () {
-                    vm.error = "Could not create new widget, Server not responding";
-                });
-        }
-
-        function createNewYoutube(){
-            var newWidget = {"_id": (new Date()).getTime().toString(), "widgetType": "YOUTUBE", "pageId": "", "size": "", "text": ""};
-            WidgetService
-                .createWidget(vm.pageId, newWidget)
-                .success(function () {
+                .success(function (newWidget) {
                     $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+newWidget._id);
                 })
                 .error(function () {
@@ -142,11 +98,24 @@
         }
 
         function updateWidget(newWidget) {
-            WidgetService
-                .updateWidget(vm.widgetId, newWidget)
-                .error(function () {
-                    vm.error = "Could not edit widget";
-                });
+            if(newWidget.type == "HEADING" && (!newWidget.text || !newWidget.size)) {
+                vm.error = "Heading text or size cannot be empty!";
+            } else if(newWidget.type == "HTML" && !newWidget.text) {
+                vm.error = "HTML text cannot be empty!";
+            } else if(newWidget.type == "IMAGE" && !newWidget.url) {
+                vm.error = "Image URL cannot be empty";
+            } else if(newWidget.type == "YOUTUBE" && !newWidget.url) {
+                vm.error = "YouTube URL cannot be empty";
+            } else {
+                WidgetService
+                    .updateWidget(vm.widgetId, newWidget)
+                    .success(function (widget) {
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+                    })
+                    .error(function () {
+                        vm.error = "Could not edit widget";
+                    });
+            }
         }
 
         function deleteWidget() {

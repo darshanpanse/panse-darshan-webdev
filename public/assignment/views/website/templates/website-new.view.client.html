@@ -16,7 +16,7 @@
             <p class="navbar-brand">New Website</p>
             <ul class="nav navbar-nav pull-right no-right-margin">
                 <li>
-                    <a href="#/user/{{model.userId}}/website">
+                    <a>
                         <span ng-click="model.createWebsite(model.website)" class="glyphicon glyphicon-ok"></span>
                     </a>
                 </li>
@@ -27,6 +27,11 @@
 
 <div class="row" id="id1">
     <div class="container col-sm-4 hidden-xs" id="list-items">
+
+        <div ng-show="model.message" class="alert alert-danger" role="alert">
+            {{model.message}}
+        </div>
+
         <div class="list-group">
             <div ng-repeat="website in model.websites" class="list-group-item">
                 <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
@@ -36,6 +41,11 @@
     </div>
 
     <div class="container col-sm-8">
+
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
+
         <div class="form-group">
             <label for="usr">Name</label>
             <input ng-model="model.website.name" type="text" class="form-control" id="usr" placeholder="Name">

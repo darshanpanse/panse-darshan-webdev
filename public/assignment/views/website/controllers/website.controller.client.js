@@ -18,13 +18,12 @@
                 })
                 .error(function () {
                     vm.message = "No websites to display";
-                    console.log(vm.message);
                 });
         }
         init();
     }
 
-    function NewWebsiteController($routeParams, WebsiteService) {
+    function NewWebsiteController($location, $routeParams, WebsiteService) {
         var vm = this;
 
         vm.createWebsite = createWebsite;
@@ -44,11 +43,20 @@
         init();
 
         function createWebsite(newWebsite) {
-            WebsiteService
-                .createWebsite(vm.userId, newWebsite)
-                .error(function () {
-                    vm.error = "Could not create new Website, Server not responding"
-                });
+            if(!newWebsite) {
+                vm.error = "Website name cannot be empty";
+            } else if(!newWebsite.name) {
+                vm.error = "Website name cannot be empty";
+            } else {
+                WebsiteService
+                    .createWebsite(vm.userId, newWebsite)
+                    .success(function () {
+                        $location.url("/user/"+vm.userId+"/website");
+                    })
+                    .error(function () {
+                        vm.error = "Could not create new Website, Server not responding"
+                    });
+            }
         }
     }
 
@@ -79,14 +87,18 @@
         init();
 
         function updateWebsite(newWebsite) {
-            WebsiteService
-                .updateWebsite(vm.websiteId, newWebsite)
-                .success(function () {
-                    vm.message = "Website Updated Successfully!";
-                })
-                .error(function () {
-                    vm.error = "Website not updated!";
-                });
+            if(newWebsite.name == "") {
+                vm.error = "Website name cannot be empty";
+            } else {
+                WebsiteService
+                    .updateWebsite(vm.websiteId, newWebsite)
+                    .success(function () {
+                        $location.url("/user/"+vm.userId+"/website");
+                    })
+                    .error(function () {
+                        vm.error = "Website not updated!";
+                    });
+            }
         }
 
         function deleteWebsite () {

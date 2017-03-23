@@ -11,6 +11,11 @@
 </nav>
 
 <div class="container-fluid" id="full-list">
+
+    <div ng-show="model.message" class="alert alert-danger" role="alert">
+        {{model.message}}
+    </div>
+
     <div class="list-group">
         <div ng-repeat="website in model.websites" class="list-group-item">
             <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>

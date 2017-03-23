@@ -1,12 +1,9 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <ul class="nav navbar-nav pull-left">
-            <li><a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-        </ul>
         <p class="navbar-brand">Widget Edit</p>
         <ul class="nav navbar-nav navbar-right pull-right">
             <li>
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+                <a class="navbar-link">
                     <span ng-click="model.updateWidget(model.widget)" class="glyphicon glyphicon-ok"></span>
                 </a>
             </li>
@@ -15,13 +12,26 @@
 </nav>
 
 <div class="container" id="widget-form">
+
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+
     <div class="form-group">
         <label for="usr">Name</label>
         <input ng-model="model.widget.name" type="text" class="form-control" id="usr" placeholder="Widget Name">
     </div>
     <div class="form-group">
-        <label for="description">Text</label>
-        <input ng-model="model.widget.text" type="text" class="form-control" id="description" placeholder="Widget Text">
+        <label for="description">HTML</label>
+        <!--<input ng-model="model.widget.text" type="text" class="form-control" id="description" placeholder="Widget Text">-->
+        <div ng-model="model.widget.text"
+             id="description"
+             text-angular
+             ta-toolbar="[['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'quote'],
+            ['bold','italics','underline','strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
+            ['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+            ['indent','outdent'],['html', 'insertImage','insertLink', 'wordcount', 'charcount']]">
+        </div>
     </div>
     <a ng-click="model.deleteWidget()" class="btn btn-danger">Delete</a>
 </div>
