@@ -1,0 +1,55 @@
+body {
+    background-color: #66afe9;
+    font-size: large;
+    padding-top: 70px;
+}
+
+.page-content {
+    font-size: xx-large;
+}
+
+.input-group {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/*#top-margin {*/
+    /*margin-top: 10px;*/
+/*}*/
+
+#search-panel {
+    margin-top: 75px;
+}
+
+@media screen and (min-width: 768px) {
+    .panel-container {
+        padding-left: 15%;
+        padding-right:15%;
+    }
+}
+
+.btn-circle {
+    width: 70px;
+    height: 70px;
+    /*padding: 7px 16px;*/
+    border: 2px solid #fff;
+    border-radius: 100% !important;
+    font-size: 40px;
+    color: #fff;
+}
+
+.font-small {
+    font-size: medium;
+}
+
+.margin-left {
+    margin-left: 10%;
+}
+
+.margin-right {
+    margin-right: 10%;
+}
+
+.delete-color {
+    color: red;
+}
