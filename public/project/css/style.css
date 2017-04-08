@@ -1,11 +1,10 @@
 body {
     background-color: #66afe9;
-    font-size: large;
     padding-top: 70px;
 }
 
 .page-content {
-    font-size: xx-large;
+    font-size: medium;
 }
 
 .input-group {
@@ -13,18 +12,21 @@ body {
     margin-bottom: 10px;
 }
 
-/*#top-margin {*/
-    /*margin-top: 10px;*/
-/*}*/
-
 #search-panel {
     margin-top: 75px;
 }
 
 @media screen and (min-width: 768px) {
-    .panel-container {
-        padding-left: 15%;
-        padding-right:15%;
+    .profile-container {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .login-register-container {
+        padding-left: 20%;
+        padding-right: 20%;
     }
 }
 
@@ -38,8 +40,12 @@ body {
     color: #fff;
 }
 
-.font-small {
-    font-size: medium;
+.margin-top {
+    margin-top: 10px;
+}
+
+.margin-bottom {
+    margin-bottom: 10px;
 }
 
 .margin-left {
@@ -53,3 +59,123 @@ body {
 .delete-color {
     color: red;
 }
+
+.a-underline {
+    text-decoration: underline;
+    color: black;
+}
+
+.image-display {
+    height: 240px;
+    background-color: red;
+    color: black;
+}
+
+.font-x-small {
+    font-size: x-small;
+}
+
+.font-small {
+    font-size: small;
+}
+
+.font-medium {
+    font-size: medium;
+}
+
+.font-large {
+    font-size: large;
+}
+
+.font-x-large {
+    font-size: x-large;
+}
+
+.blank-lines-10px {
+    margin-top: 10px;
+}
+
+.blank-lines-20px {
+    margin-top: 20px;
+}
+
+.blank-lines-40px {
+    margin-top: 40px;
+}
+
+.blank-lines-60px {
+    margin-top: 60px;
+}
+
+.blank-lines-80px {
+    margin-top: 80px;
+}
+
+.blank-lines-100px {
+    margin-top: 100px;
+}
+
+@media screen and (max-width: 426px){
+    .font-mobile-small {
+        font-size: small;
+    }
+}
+
+@media screen and (max-width: 426px){
+    .font-mobile-x-small {
+        font-size: x-small;
+    }
+}
+
+@media screen and (max-width: 426px){
+    .font-mobile-xx-small {
+        font-size: xx-small;
+    }
+}
+
+table {
+    width: 100%;
+    overflow-x: scroll;
+}
+
+#google-map {
+    background-color: white;
+    height: 70vh;
+    width: 100%;
+
+}
+
+.thumbnail {
+    background-color: red;
+    height: 80px;
+    width: 80px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.color-blue {
+    color: blue;
+}
+
+.color-green {
+    color: green;
+}
+
+.color-red {
+    color: red;
+}
+
+.profile-pic {
+    background-color: red;
+    height: 200px;
+    width: 200px;
+}
+
+/*.vertical-line {*/
+/*border-right: 2px solid white;*/
+/*overflow: auto;*/
+/*position: relative;*/
+/*height: 100%;*/
+/*}*/

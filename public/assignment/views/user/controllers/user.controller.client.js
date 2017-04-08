@@ -10,7 +10,6 @@
         vm.login = login;
 
         function login(user) {
-            console.log(user);
             if (user.username == "" && user.password != "") {
                 vm.alert = "Username cannot be empty";
             }
@@ -24,7 +23,7 @@
                 var promise = UserService.findUserByCredentials(user.username, user.password);
                 promise
                     .success(function (loginUser) {
-                        $location.url("/user/" + loginUser._id);
+                        $location.url("/customer/" + loginUser._id);
                     })
                     .error(function () {
                         vm.alert = "Unable to login";
@@ -48,7 +47,7 @@
                         UserService
                             .createUser(newUser)
                             .success(function (user) {
-                                $location.url('/user/' + user._id);
+                                $location.url('/customer/' + user._id);
                             })
                             .error(function () {
                                 vm.error = "Could not Register User. Server not responding!"

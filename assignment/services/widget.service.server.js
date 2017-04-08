@@ -167,7 +167,7 @@ module.exports = function (app, widgetModel) {
                 .updateWidget(widgetId, imageWidget)
                 .then(function (response) {
                     if(response.ok === 1 && response.n === 1){
-                        res.redirect("/assignment/#/user/"+uid+"/website/"+websiteId+"/page/"+pageId+"/widget");
+                        res.redirect("/assignment/#/customer/"+uid+"/website/"+websiteId+"/page/"+pageId+"/widget");
                     }
                     else{
                         res.sendStatus(404);
@@ -179,8 +179,8 @@ module.exports = function (app, widgetModel) {
         }
         else{
             // File was not uploaded
-            // Return the user to widget list page
-            res.redirect("/assignment/#/user/"+uid+"/website/"+websiteId+"/page/"+pageId+"/widget");
+            // Return the customer to widget list page
+            res.redirect("/assignment/#/customer/"+uid+"/website/"+websiteId+"/page/"+pageId+"/widget");
         }
     }
 

@@ -30,7 +30,7 @@
             WidgetService
                 .updateWidget(vm.widgetId, {url: url})
                 .success(function () {
-                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+                    $location.url("/customer/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
                 })
                 .error(function () {
                     console.log("could not load image");
