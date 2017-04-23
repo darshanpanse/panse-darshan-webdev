@@ -483,7 +483,7 @@ module.exports = function (app, actorModel) {
 
     function register(req, res) {
         var actor = req.body;
-        actor.password = bcrypt.hashSync(actor.password);
+        // actor.password = bcrypt.hashSync(actor.password);
         actorModel
             .createActor(actor)
             .then(function (actor) {

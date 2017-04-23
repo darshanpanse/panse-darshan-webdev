@@ -512,7 +512,7 @@
                 .then(function (actor) {
                     if(actor) {
                         if(actor == "0") {
-                            $location.url("/actor/login/product/"+productName+"/"+productId+"/location/"+location+"/store/"+storeId+"/radius/"+vm.radius+"/sorting/"+vm.sorting+"/price/"+vm.price);
+                            $location.url("/actor/login/product/"+vm.productName+"/"+productId+"/location/"+vm.location+"/store/"+storeId+"/radius/"+vm.radius+"/sorting/"+vm.sorting+"/price/"+vm.price);
                         }
                         else {
                             var flag = 0;
@@ -558,7 +558,7 @@
                 .then(function (actor) {
                     if(actor) {
                         if(actor == "0") {
-                            $location.url("/actor/login/product/"+productName+"/"+productId+"/location/"+location+"/store/"+storeId+"/radius/"+vm.radius+"/sorting/"+vm.sorting+"/price/"+vm.price);
+                            $location.url("/actor/login/product/"+vm.productName+"/"+productId+"/location/"+vm.location+"/store/"+storeId+"/radius/"+vm.radius+"/sorting/"+vm.sorting+"/price/"+vm.price);
                         }
                         else {
                             ProductService
@@ -603,7 +603,7 @@
                 .then(function (actor) {
                     if(actor) {
                         if(actor == "0") {
-                            $location.url("/actor/login/product/"+productName+"/"+productId+"/location/"+location+"/store/"+storeId+"/radius/"+vm.radius+"/sorting/"+vm.sorting+"/price/"+vm.price);
+                            $location.url("/actor/login/product/"+vm.productName+"/"+productId+"/location/"+vm.location+"/store/"+storeId+"/radius/"+vm.radius+"/sorting/"+vm.sorting+"/price/"+vm.price);
                         }
                         else {
                             ProductService

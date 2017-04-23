@@ -362,7 +362,7 @@
                 .then(function (actor) {
                     if(actor) {
                         if(actor == "0") {
-                            $location.url("/actor/login/product/"+productName+"/"+storeId+"/location/"+location+"/store/"+storeId+"/radius/"+radius+"/sorting/"+sorting+"/price/"+price);
+                            $location.url("/actor/login/product/"+vm.productName+"/"+storeId+"/location/"+vm.location+"/store/"+storeId+"/radius/"+radius+"/sorting/"+sorting+"/price/"+price);
                         }
                         else {
                             StoreService
@@ -399,7 +399,7 @@
                 .then(function (actor) {
                     if(actor) {
                         if(actor == "0") {
-                            $location.url("/actor/login/product/"+productName+"/"+storeId+"/location/"+location+"/store/"+storeId+"/radius/"+radius+"/sorting/"+sorting+"/price/"+price);
+                            $location.url("/actor/login/product/"+vm.productName+"/"+storeId+"/location/"+vm.location+"/store/"+storeId+"/radius/"+radius+"/sorting/"+sorting+"/price/"+price);
                         }
                         else {
                             var flag = 0;
@@ -445,7 +445,7 @@
                 .then(function (actor) {
                     if(actor) {
                         if(actor == "0") {
-                            $location.url("/actor/login/product/"+productName+"/"+storeId+"/location/"+location+"/store/"+storeId+"/radius/"+radius+"/sorting/"+sorting+"/price/"+price);
+                            $location.url("/actor/login/product/"+vm.productName+"/"+storeId+"/location/"+vm.location+"/store/"+storeId+"/radius/"+radius+"/sorting/"+sorting+"/price/"+price);
                         }
                         else {
                             StoreService
