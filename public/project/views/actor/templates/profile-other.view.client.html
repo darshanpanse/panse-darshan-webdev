@@ -1,0 +1,299 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/">ShopSmart</a>
+            <button type="button" class="w3-pink navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navbar-collapse-info">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="hidden-sm hidden-md hidden-lg">
+                <button type="button" class="w3-pink navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-search">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-info">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#/actor/profile"><b style="color: teal">Hello {{model.currentActor.firstName}}!</b></a></li>
+                <li><a ng-click="model.logout()">Logout</a></li>
+                <li ng-if="model.currentActor.role == 'ADMIN'"><a href="#/actor/admin">Admin</a></li>
+            </ul>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-search">
+            <ul class="hidden-sm hidden-md hidden-lg nav navbar-nav navbar-right margin-left margin-right">
+                <li>
+                    <input ng-model="model.productName" type="text" class="input-group form-control" placeholder="Product Name">
+                </li>
+                <li>
+                    <input ng-model="model.location" type="text" class="input-group form-control" placeholder="Location">
+                </li>
+                <li>
+                    <span class="input-group-btn">
+                    <button ng-click="model.search(model.productName, model.location)" class="w3-block w3-btn w3-pink input-group form-control">Search &nbsp;
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="hidden-xs col-sm-5">
+                <input ng-model="model.productName" type="text" class="form-control" placeholder="Product Name">
+            </div>
+            <div class="hidden-xs col-sm-5">
+                <input ng-model="model.location" type="text" class="form-control" placeholder="Location">
+            </div>
+            <div class="hidden-xs col-sm-2 margin-bottom">
+                <span class="input-group-btn">
+                    <a ng-click="model.search(model.productName, model.location)" class="w3-block w3-btn w3-pink form-control">Search &nbsp;
+                        <!--<i class="fa fa-search"></i>-->
+                        <span class="glyphicon glyphicon-search"></span>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="hidden-xs">
+    <div class="blank-lines-60px"></div>
+</div>
+
+<div class="container-fluid page-content">
+    <div class="row">
+        <div class="col-xs-12 col-md-4">
+            <div ng-hide="model.currentActor._id == model.actor._id" class="row">
+                <div class="col-xs-6 col-sm-4 col-md-6 pull-left">
+                    <a ng-show="model.isFollowing == 0" ng-click="model.addToFollowing()" class="btn btn-default input-group color-green">
+                        <span ng-show="model.isFollowing == 0" class="glyphicon glyphicon-plus"></span>&nbsp;Follow
+                    </a>
+                    <div class="dropdown">
+                        <a ng-show="model.isFollowing == 1" class="btn btn-default input-group color-blue dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-ok"></span>&nbsp;Following
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="model.removeFromFollowing()"><span class="glyphicon glyphicon-remove color-red"></span>&nbsp;Stop Following</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="hidden-xs hidden-sm">
+                    <div class="blank-lines-20px"></div>
+                </div>
+                <div class="hidden-xs hidden-sm col-md-12">
+                    <a><h1>{{model.actor.firstName}} {{model.actor.lastName}}</h1></a>
+                </div>
+                <div class="hidden-md hidden-lg col-xs-12">
+                    <a><h1 align="center">{{model.actor.firstName}} {{model.actor.lastName}}</h1></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 blank-lines-20px">
+                    <p ng-show="model.actor.gender" id="gender">{{model.actor.gender}}</p>
+                    <p ng-show="model.actor.dob" id="dob">{{model.actor.dob}}</p>
+                    <p ng-show="model.actor.city" id="city">{{model.actor.city}}</p>
+                    <p ng-show="model.actor.state" id="state">{{model.actor.state}}</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="hidden-xs col-sm-6 col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Following / Followers
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a data-toggle="tab" data-target="#following">Following</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" data-target="#followers">Followers</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="following" class="tab-pane fade in active">
+                            <ul class="list-group">
+                                <li ng-repeat="actor in model.following" class="list-group-item">
+                                    <div class="row">
+                                        <a>{{actor.firstName}}&nbsp;{{actor.lastName}}</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="followers" class="tab-pane fade">
+                            <ul class="list-group">
+                                <li ng-repeat="actor in model.followers" class="list-group-item">
+                                    <div class="row">
+                                        <a>{{actor.firstName}}&nbsp;{{actor.lastName}}</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-target="#following-followers">Following / Followers</a>
+                        </h4>
+                    </div>
+                    <div id="following-followers" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a data-toggle="tab" data-target="#xsfollowing">Following</a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" data-target="#xsfollowers">Followers</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="xsfollowing" class="tab-pane fade in active">
+                                    <ul class="list-group">
+                                        <li ng-repeat="actor in model.following" class="list-group-item">
+                                            <div class="row">
+                                                <a>{{actor.firstName}}&nbsp;{{actor.lastName}}</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="xsfollowers" class="tab-pane fade">
+                                    <ul class="list-group">
+                                        <li ng-repeat="actor in model.followers" class="list-group-item">
+                                            <div class="row">
+                                                <a>{{actor.firstName}}&nbsp;{{actor.lastName}}</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hidden-xs col-sm-6 col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Favourites
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a data-toggle="tab" data-target="#products">Products</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" data-target="#stores">Stores</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="products" class="tab-pane fade in active">
+                            <ul class="list-group">
+                                <li ng-repeat="product in model.favProducts" class="list-group-item">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <p>{{product.title}}</p>
+                                            <div class="col-xs-6">
+                                                <p><strike>{{product.original_price}}</strike></p>
+                                                <p>{{product.price}}</p>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div>
+                                                    <img src="{{product.image}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="stores" class="tab-pane fade">
+                            <ul class="list-group">
+                                <li ng-repeat="store in model.favStores" class="list-group-item">
+                                    <div class="container-fluid">
+                                        <p>{{store.name}}</p>
+                                        <p>{{store.website}}</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-target="#favourites">Favourites</a>
+                        </h4>
+                    </div>
+                    <div id="favourites" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a data-toggle="tab" data-target="#xsproducts">Products</a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" data-target="#xsstores">Stores</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="xsproducts" class="tab-pane fade in active">
+                                    <ul class="list-group">
+                                        <li ng-repeat="product in model.favProducts" class="list-group-item">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <p>{{product.title}}</p>
+                                                    <div class="col-xs-6">
+                                                        <p><strike>{{product.original_price}}</strike></p>
+                                                        <p>{{product.price}}</p>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <div>
+                                                            <img src="{{product.image}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="xsstores" class="tab-pane fade">
+                                    <ul class="list-group">
+                                        <li ng-repeat="store in model.favStores" class="list-group-item">
+                                            <div class="container-fluid">
+                                                <p>{{store.name}}</p>
+                                                <p>{{store.website}}</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

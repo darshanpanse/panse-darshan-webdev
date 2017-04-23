@@ -1,0 +1,52 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" ng-click="model.backButton()"><span class="glyphicon glyphicon-chevron-left"></span></a>
+            <a class="navbar-brand" href="#/">ShopSmart</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container page-content bg-1 login-container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Sign In</div>
+        <div class="panel-body">
+            <div class="alert alert-danger" ng-show="model.error">{{model.error}}</div>
+            <form name="loginForm" novalidate>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input ng-model="model.actor.username" name="username" id="username" type="text" class="w3-input" placeholder="Username" required>
+                </div>
+                <span ng-if="loginForm.$submitted && loginForm.username.$error.required" class="color-red">Username is required</span>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input ng-model="model.actor.password" name="password" id="password" type="password" class="w3-input" placeholder="Password" required>
+                </div>
+                <span ng-if="loginForm.$submitted && loginForm.password.$error.required" class="color-red">Password is required</span>
+                <button type="submit" ng-click="loginForm.$valid && model.login(model.actor)" class="btn btn-success btn-block">Sign In</button>
+                <a href="/auth/google" class="btn btn-danger btn-block">
+                    <span class="fa fa-google-plus"></span>
+                    Google
+                </a>
+                <a href="/auth/facebook" class="btn btn-primary btn-block">
+                    <span class="fa fa-facebook"></span>
+                    Facebook
+                </a>
+            </form>
+            <hr>
+            <p class="font-small">Do not have an account?<a class="pull-right" href="#/actor/register">Sign Up</a></p>
+        </div>
+    </div>
+</div>

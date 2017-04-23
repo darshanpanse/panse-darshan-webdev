@@ -1,15 +1,17 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Catalog</a>
-            <button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navbar-collapse-info">
+            <a class="navbar-brand" ng-click="model.backButton()"><span class="glyphicon glyphicon-chevron-left"></span></a>
+            <a class="navbar-brand" href="#/">ShopSmart</a>
+            <button type="button" class="w3-pink navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navbar-collapse-info">
                 <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
             <div class="hidden-sm hidden-md hidden-lg">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-search">
+                <button type="button" class="w3-pink navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-search">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="glyphicon glyphicon-search"></span>
                 </button>
@@ -18,27 +20,27 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse-info">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#"><i class="fa fa-sign-in"></i> Login</a></li>
-                <li><a href="#"><i class="fa fa-user"></i> Register</a></li>
+                <li><a ng-click="model.checkLogProfNav(model.productName, model.location)">
+                    <i class="fa {{model.logProf_icon}}"></i>
+                    {{model.logProf}}
+                </a></li>
+                <li><a ng-click="model.checkLogRegNav()"><i class="fa {{model.logReg_icon}}"></i> {{model.logReg}}</a></li>
             </ul>
         </div>
 
         <div class="collapse navbar-collapse" id="navbar-collapse-search">
             <ul class="hidden-sm hidden-md hidden-lg nav navbar-nav navbar-right margin-left margin-right">
                 <li>
-                    <input type="text" class="input-group form-control" placeholder="Product/Store Name">
+                    <input ng-model="model.productName" type="text" class="input-group form-control" placeholder="Product/Store Name">
                 </li>
                 <li>
-                    <input type="text" class="input-group form-control" placeholder="Location">
+                    <input ng-model="model.location" type="text" class="input-group form-control" placeholder="Location">
                 </li>
                 <li>
                     <span class="input-group-btn">
-                    <a class="btn btn-default btn-block input-group form-control">Search &nbsp;
-                        <!--<i class="fa fa-search"></i>-->
+                    <button ng-click="model.search(model.productName, model.location)" class="w3-block w3-btn w3-pink input-group form-control">Search &nbsp;
                         <span class="glyphicon glyphicon-search"></span>
-                    </a>
+                    </button>
                 </span>
                 </li>
             </ul>
@@ -48,15 +50,14 @@
     <div class="container-fluid">
         <div class="row">
             <div class="hidden-xs col-sm-5">
-                <input type="text" class="form-control" placeholder="Product/Store Name">
+                <input ng-model="model.productName" type="text" class="form-control" placeholder="Product/Store Name">
             </div>
             <div class="hidden-xs col-sm-5">
-                <input type="text" class="form-control" placeholder="Location">
+                <input ng-model="model.location" type="text" class="form-control" placeholder="Location">
             </div>
             <div class="hidden-xs col-sm-2 margin-bottom">
                 <span class="input-group-btn">
-                    <a class="btn btn-default btn-block form-control">Search &nbsp;
-                        <!--<i class="fa fa-search"></i>-->
+                    <a ng-click="model.search(model.productName, model.location)" class="w3-block w3-btn w3-pink form-control">Search &nbsp;
                         <span class="glyphicon glyphicon-search"></span>
                     </a>
                 </span>
@@ -72,45 +73,56 @@
 
 <div class="container-fluid page-content">
     <div class="row">
-        <div class="hidden-xs pull-right margin-right">
-            <a class="btn btn-default input-group color-green">
-                <span class="glyphicon glyphicon-plus"></span>&nbsp;Add to My Favourites
+        <div class="pull-right margin-right">
+            <a ng-show="model.isFavourite == 0" ng-click="model.addToFavourites()" class="btn btn-default input-group color-green">
+                <span ng-show="model.isFavourite == 0" class="glyphicon glyphicon-plus"></span>&nbsp;Add to My Favourites
             </a>
+            <div class="dropdown">
+                <a ng-show="model.isFavourite == 1" class="btn btn-default input-group color-blue dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-ok"></span>&nbsp;Added to Favourites
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="model.removeFromFavourites()"><span class="glyphicon glyphicon-remove color-red"></span>&nbsp;Remove from Favourites</a></li>
+                </ul>
+            </div>
         </div>
     </div>
-    <!--<div class="row">-->
-    <!--<div class="hidden-xs pull-right margin-right">-->
-    <!--<a class="btn btn-default input-group color-blue">-->
-    <!--<span class="glyphicon glyphicon-ok"></span>&nbsp;Added to Favourites-->
-    <!--</a>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="row">
-        <div class="hidden-sm hidden-md hidden-lg pull-right margin-right">
-            <a class="btn btn-default input-group color-green">
-                <span class="glyphicon glyphicon-plus"></span>&nbsp;Add to My Favourites
-            </a>
-        </div>
-        <!--<div class="col-xs-8 hidden-sm hidden-md hidden-lg pull-left">-->
-        <!--<a class="btn btn-default input-group color-blue">-->
-        <!--<span class="glyphicon glyphicon-ok"></span>&nbsp;Added to Favourites-->
-        <!--</a>-->
-        <!--</div>-->
+
+    <h3 class="bold" id="store-name">{{model.store.name}}</h3>
+    <div class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown">
+            {{model.store.locations.length}} local stores
+        </a>
+        <ul class="dropdown-menu list-group">
+            <li ng-repeat="location in model.store.locations" class="list-group-item"><a ng-click="model.chooseLocation(location)">{{location.address}}</a></li>
+        </ul>
     </div>
 
-    <label for="store-name">Store Name</label>
-    <p id="store-name">Under Armour</p>
-    <label for="store-location">Store Location</label>
-    <p id="store-location">212 Hemenway Street</p>
     <div class="blank-lines-20px"></div>
-    <a class="btn btn-default input-group color-blue">
-        <span class="glyphicon glyphicon-screenshot"></span>&nbsp;Request Lyft
-    </a>
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="color: white; background-color: deeppink">
+            Request LYFT Ride <span class="glyphicon glyphicon-triangle-bottom"></span>
+        </button>
+        <ul ng-hide="model.selectedDestination" class="dropdown-menu">
+            <li>Please select a destination first</li>
+        </ul>
+        <a ng-show="model.ride_type" ng-click="model.requestLyft(model.ride_type)" class="btn btn-default" type="button" style="color: deeppink">
+            Confirm {{model.ride_type}}
+        </a>
+        <ul ng-show="model.selectedDestination" class="dropdown-menu">
+            <li class="dropdown-header">LYFT</li>
+            <li><a ng-click="model.chooseRideType('LYFT')">Lyft in {{model.lyftETA}}<br>{{model.lyftCost}}</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">LYFT Line</li>
+            <li><a ng-click="model.chooseRideType('LYFT Line')">Lyft in {{model.lyftLineETA}}<br>{{model.lyftLineCost}}</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">LYFT Plus</li>
+            <li><a ng-click="model.chooseRideType('LYFT Plus')">Lyft in {{model.lyftLineETA}}<br>{{model.lyftPlusCost}}</a></li>
+        </ul>
+    </div>
     <div class="blank-lines-20px"></div>
-    <a href="#">www.bluesneakers.com</a>
-    <p>+1 (555) 555-5555</p>
-
-
+    <a href="{{model.store.website}}">{{model.store.website}}</a>
 
     <div class="hidden-xs">
         <div class="blank-lines-40px"></div>
@@ -124,48 +136,75 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            41 people have added this store to favourites
+            <div ng-show="model.favourites.length > 1 && model.isFavourite == 0">
+                {{model.favourites.length}} people have added this product to favourites
+            </div>
+            <div ng-show="model.favourites.length > 2 && model.isFavourite == 1">
+                You and {{model.favourites.length - 1}} others have added this product to favourites
+            </div>
+            <div ng-show="model.favourites.length == 2 && model.isFavourite == 1">
+                You and 1 other have added this product to favourites
+            </div>
+            <div ng-show="model.favourites.length == 1 && model.isFavourite == 0">
+                1 person has added this product to favourites
+            </div>
+            <div ng-show="model.favourites.length == 1 && model.isFavourite == 1">
+                You have added this product to favourites
+            </div>
+            <div ng-show="model.favourites.length == 0">
+                Be the first to add this product to favourites
+            </div>
         </div>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <span class="glyphicon glyphicon-thumbs-up color-blue"></span>&nbsp;182 people have liked this store
+            <div ng-show="model.likes.length > 1 && model.isLiked == 0">
+                <span ng-click="model.addToLikes()" class="glyphicon glyphicon-thumbs-up"></span>
+                &nbsp{{model.likes.length}} people have liked this product
+            </div>
+            <div ng-show="model.likes.length > 2 && model.isLiked == 1">
+                <span ng-click="model.addToLikes()" class="glyphicon glyphicon-thumbs-up color-blue"></span>
+                &nbspYou and {{model.likes.length - 1}} others have liked this product
+            </div>
+            <div ng-show="model.likes.length == 2 && model.isLiked == 1">
+                <span ng-click="model.addToLikes()" class="glyphicon glyphicon-thumbs-up color-blue"></span>
+                &nbspYou and 1 other have liked this product
+            </div>
+            <div ng-show="model.likes.length == 1 && model.isLiked == 0">
+                <span ng-click="model.addToLikes()" class="glyphicon glyphicon-thumbs-up"></span>
+                &nbsp1 person has liked this product
+            </div>
+            <div ng-show="model.likes.length == 1 && model.isLiked == 1">
+                <span ng-click="model.addToLikes()" class="glyphicon glyphicon-thumbs-up color-blue"></span>
+                &nbspYou have liked this product
+            </div>
+            <div ng-show="model.likes.length == 0">
+                <span ng-click="model.addToLikes()" class="glyphicon glyphicon-thumbs-up"></span>
+                &nbspBe the first to like this product
+            </div>
         </div>
         <div class="panel-body">
             <ul class="list-group">
                 <li class="list-group-item">
                     <label for="comment">Comments</label>
-                    <textarea rows="3"
+                    <textarea ng-model="model.text"
+                              rows="3"
                               class="form-control"
                               id="comment"
                               placeholder="Write a comment..."></textarea>
-                    <a class="btn btn-primary input-group form-control">
+                    <a ng-click="model.addToComments()" class="btn btn-primary input-group form-control">
                         Post
                     </a>
                 </li>
-                <li class="list-group-item">
+                <li ng-repeat="comment in model.comments | orderBy: '-timestamp'" class="list-group-item">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-xs-12 col-sm-4">
-                                <p class="font-small bold">User 1 Name</p>
-                                <div class="thumbnail"></div>
-                            </div>
-                            <div class="col-xs-12 col-sm-8">
-                                <p class="font-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae facilisis mauris, feugiat efficitur ligula. Duis blandit fringilla orci, ac sagittis eros semper non.</p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-4">
-                                <p class="font-small bold">User 2 Name</p>
-                                <div class="thumbnail"></div>
-                            </div>
-                            <div class="col-xs-12 col-sm-8">
-                                <p class="font-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae facilisis mauris, feugiat efficitur ligula. Duis blandit fringilla orci, ac sagittis eros semper non.</p>
+                            <div class="col-xs-12 col-sm-4 col-lg-3">
+                                <a ng-click="model.navToOtherProfile(comment.user._id)"
+                                   class="bold pull-left">{{comment.user.firstName}} {{comment.user.lastName}}</a></div>
+                            <div class="col-xs-12 col-sm-8 col-lg-9">
+                                <p>{{comment.text}}</p>
                             </div>
                         </div>
                     </div>

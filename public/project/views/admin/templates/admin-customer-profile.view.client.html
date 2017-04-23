@@ -1,0 +1,407 @@
+<script src="js/bootstrap-formhelpers-states.en_US.js"></script>
+<script src="js/bootstrap-formhelpers-states.js"></script>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Catalog</a>
+            <button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navbar-collapse-info">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="hidden-sm hidden-md hidden-lg">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-search">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-info">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#/actor/profile"><b style="font-size: 30px; color: #c43c35">Hello {{model.actor.firstName}}!</b></a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a ng-click="model.logout()">Logout</a></li>
+            </ul>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-search">
+            <ul class="hidden-sm hidden-md hidden-lg nav navbar-nav navbar-right margin-left margin-right">
+                <li>
+                    <input ng-model="model.productName" type="text" class="input-group form-control" placeholder="Product Name">
+                </li>
+                <li>
+                    <input ng-model="model.location" type="text" class="input-group form-control" placeholder="Location">
+                </li>
+                <li>
+                    <span class="input-group-btn">
+                    <a ng-click="model.search(model.productName, model.location)" class="btn btn-default btn-block input-group form-control">Search &nbsp;
+                        <!--<i class="fa fa-search"></i>-->
+                        <span class="glyphicon glyphicon-search"></span>
+                    </a>
+                </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="hidden-xs col-sm-5">
+                <input ng-model="model.productName" type="text" class="form-control" placeholder="Product Name">
+            </div>
+            <div class="hidden-xs col-sm-5">
+                <input ng-model="model.location" type="text" class="form-control" placeholder="Location">
+            </div>
+            <div class="hidden-xs col-sm-2 margin-bottom">
+                <span class="input-group-btn">
+                    <a ng-click="model.search(model.productName, model.location)" class="btn btn-default btn-block form-control">Search &nbsp;
+                        <!--<i class="fa fa-search"></i>-->
+                        <span class="glyphicon glyphicon-search"></span>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="hidden-xs">
+    <div class="blank-lines-60px"></div>
+</div>
+
+<div class="hidden-sm hidden-md hidden-lg">
+    <div class="blank-lines-20px"></div>
+</div>
+
+<div class="container-fluid page-content">
+    <div class="row">
+        <div class="col-xs-12 col-md-8">
+
+            <div class="login-register-container pull-left" style="padding-bottom: 40px">
+                <div class="w3-container w3-teal">
+                    <h2>Profile</h2>
+                </div>
+                <form name="profileForm" class="w3-card-4 w3-container w3-border" novalidate>
+                    <p>
+                        <label>Username</label>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <input ng-model="model.actor.username" name="username" id="username1" class="w3-input" type="text" required readonly>
+                            <span ng-if="profileForm.$submitted && profileForm.username.$error.required" class="color-red">*required</span>
+                        </div>
+                    </div>
+                    </p>
+                    <p>
+                        <label>First Name</label>
+                    <div class="row">
+                        <div class="col-xs-9 col-sm-10" id="firstName2">
+                            <input ng-model="model.actor.firstName" name="firstName" id="firstName1" class="w3-input" type="text" required readonly>
+                            <span ng-if="profileForm.$submitted && profileForm.firstName.$error.required" class="color-red">*required</span>
+                        </div>
+                        <div class="col-xs-1" id="firstName3">
+                                <span class="input-group-btn">
+                                    <a ng-click="model.disableReadOnly('firstName')" class="btn btn-default btn-block">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                 </span>
+                        </div>
+                    </div>
+                    </p>
+                    <p>
+                        <label>Last Name</label>
+                    <div class="row">
+                        <div class="col-xs-9 col-sm-10" id="lastName2">
+                            <input ng-model="model.actor.lastName" name="lastName" id="lastName1" class="w3-input" type="text" required readonly>
+                            <span ng-if="profileForm.$submitted && profileForm.lastName.$error.required" class="color-red">*required</span>
+                        </div>
+                        <div class="col-xs-1" id="lastName3">
+                                <span class="input-group-btn">
+                                    <a ng-click="model.disableReadOnly('lastName')" class="btn btn-default btn-block">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                 </span>
+                        </div>
+                    </div>
+                    </p>
+                    <p>
+                        <label>Email Address</label>
+                    <div class="row">
+                        <div class="col-xs-9 col-sm-10" id="email2">
+                            <input ng-model="model.actor.email" name="email" id="email1" class="w3-input" type="email" required readonly>
+                            <span ng-if="profileForm.$submitted && profileForm.email.$error.required" class="color-red">*required</span>
+                            <span ng-if="profileForm.$submitted && profileForm.email.$error.email" class="color-red">*invalid email</span></span>
+                        </div>
+                        <div class="col-xs-1" id="email3">
+                                <span class="input-group-btn">
+                                    <a ng-click="model.disableReadOnly('email')" class="btn btn-default btn-block">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                 </span>
+                        </div>
+                    </div>
+                    </p>
+                    <p>
+                        <label>Phone Number</label>
+                    <div class="row">
+                        <div class="col-xs-9 col-sm-10" id="phone2">
+                            <input ng-model="model.actor.phone"
+                                   name="phone"
+                                   id="phone1"
+                                   type="number"
+                                   class="w3-input input-medium bfh-phone"
+                                   data-format="d (ddd) ddd-dddd"
+                                   placeholder="1 (555) 555-5555"
+                                   readonly>
+                        </div>
+                        <div class="col-xs-1" id="phone3">
+                                <span class="input-group-btn">
+                                    <a ng-click="model.disableReadOnly('phone')" class="btn btn-default btn-block">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                 </span>
+                        </div>
+                    </div>
+                    </p>
+                    <p>
+                        <label>Address</label>
+                    <div class="row">
+                        <div class="col-xs-9 col-sm-10" id="address2">
+                            <input ng-model="model.actor.address" name="address" id="address1" class="w3-input" type="text" readonly>
+                        </div>
+                        <div class="col-xs-1" id="address3">
+                                <span class="input-group-btn">
+                                    <a ng-click="model.disableReadOnly('address')" class="btn btn-default btn-block">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                 </span>
+                        </div>
+                    </div>
+                    </p>
+                    <p>
+                        <label>City</label>
+                    <div class="row">
+                        <div class="col-xs-9 col-sm-10" id="city2">
+                            <input ng-model="model.actor.city" name="city" id="city1" class="w3-input" type="text" readonly>
+                        </div>
+                        <div class="col-xs-1" id="city3">
+                                <span class="input-group-btn">
+                                    <a ng-click="model.disableReadOnly('city')" class="btn btn-default btn-block">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                 </span>
+                        </div>
+                    </div>
+                    </p>
+                    <p>
+                        <label>State</label>
+                    <div class="row">
+                        <div class="col-xs-9 col-sm-10" id="state2">
+                            <select ng-model="model.actor.state" name="state" id="state" class="form-control bfh-states" data-country="US" data-state="{{model.actor.state}}" disabled></select>
+                        </div>
+                        <div class="col-xs-1" id="state3">
+                                <span class="input-group-btn">
+                                    <a ng-click="model.disableReadOnly('state')" class="btn btn-default btn-block">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                 </span>
+                        </div>
+                    </div>
+                    </p>
+                    <p>
+                        <label>Zip Code</label>
+                    <div class="row">
+                        <div class="col-xs-9 col-sm-10" id="zipcode2">
+                            <input ng-model="model.actor.zipcode" name="zipcode" id="zipcode1" class="w3-input" type="text" readonly>
+                        </div>
+                        <div class="col-xs-1" id="zipcode3">
+                                <span class="input-group-btn">
+                                    <a ng-click="model.disableReadOnly('zipcode')" class="btn btn-default btn-block">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                 </span>
+                        </div>
+                    </div>
+                    </p>
+                    <p>
+                        <label>Date of Birth</label>
+                    <div class="row">
+                        <div class="col-xs-9 col-sm-10" id="dob2">
+                            <input ng-model="model.actor.dob" name="dob" id="dob1" class="w3-input" type="text" readonly>
+                        </div>
+                        <div class="col-xs-1" id="dob3">
+                                <span class="input-group-btn">
+                                    <a ng-click="model.disableReadOnly('dob')" class="btn btn-default btn-block">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                 </span>
+                        </div>
+                    </div>
+                    </p>
+                    <div class="form-group row">
+                        <div class="col-xs-9 col-sm-10" id="gender2">
+                            <label class="radio-inline">
+                                <input class="radio" type="radio" name="gender" value="male" ng-model="model.actor.gender">Male
+                            </label>
+                            <label class="radio-inline">
+                                <input class="radio" type="radio" name="gender" value="female" ng-model="model.actor.gender">Female
+                            </label>
+                            <label class="radio-inline">
+                                <input class="radio" type="radio" name="gender" value="other" ng-model="model.actor.gender">Other
+                            </label>
+                        </div>
+                        <div class="col-xs-1" id="gender3">
+                            <span class="input-group-btn">
+                                <a ng-click="model.disableReadOnly('gender')" class="btn btn-default btn-block">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                             </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-xs-12">
+                            <a class="btn btn-default btn-primary" data-toggle="collapse" data-target="#changePassword">Change Password</a>
+                            <div id="changePassword" class="collapse">
+                                <div class="panel panel-default col-sm-8">
+                                    <div class="panel-body">
+                                        <input ng-model="model.oldPassword" type="text" class="form-control input-group" placeholder="Old Password">
+                                        <input ng-model="model.newPassword" type="text" class="form-control input-group" placeholder="New Password">
+                                        <input ng-model="model.confirmPassword" type="text" class="form-control input-group" placeholder="Confirm New Password">
+                                        <div class="row">
+                                            <a ng-click="model.changePassword(model.oldPassword, model.newPassword, model.confirmPassword)"
+                                               class="btn btn-success col-xs-4 margin-left">Confirm</a>
+                                            <a ng-click="model.cancelChangePassword()" data-toggle="collapse" data-target="#changePassword" class="btn btn-info col-xs-4 pull-right margin-right">Cancel</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" ng-click="profileForm.$valid && model.updateProfile(model.actor)" class="btn btn-success col-xs-4 margin-left">Update</button>
+                        <a href="#/" class="btn btn-info col-xs-4 pull-right margin-right">Cancel</a>
+                    </div>
+                    <hr>
+                    <p class="font-small">Delete account permanently? <a ng-click="model.deleteAccount()" class="pull-right delete-color">Delete</a></p>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-4">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-target="#favourites">
+                                My Favourites
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="favourites" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="panel-body">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a data-toggle="tab" data-target="#products">Products</a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="tab" data-target="#stores">Stores</a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div id="products" class="tab-pane fade in active">
+                                        <ul class="list-group">
+                                            <div ng-repeat="product in model.favProducts">
+                                                <li class="list-group-item">
+                                                    <div class="container-fluid">
+                                                        <div class="row">
+                                                            <div class="col-xs-6">
+                                                                <p class="font-small bold">{{product.title}}</p>
+                                                                <p class="font-small">{{product.price}}</p>
+                                                            </div>
+                                                            <div class="col-xs-6">
+                                                                <img src="{{product.image}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </div>
+                                        </ul>
+                                    </div>
+
+                                    <div id="stores" class="tab-pane fade">
+                                        <ul class="list-group">
+                                            <li ng-repeat="store in model.favStores" class="list-group-item">
+                                                <div class="container-fluid">
+                                                    <p class="font-small bold">{{store.name}}</p>
+                                                    <p class="font-x-small">{{store.website}}</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-4">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-target="#following-followers">
+                                Following / Followers
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="following-followers" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="panel-body">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a data-toggle="tab" data-target="#following">Following</a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="tab" data-target="#followers">Followers</a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div id="following" class="tab-pane fade in active">
+                                        <ul class="list-group">
+                                            <div ng-repeat="actor in model.following">
+                                                <li class="list-group-item">
+                                                    <div class="container-fluid">
+                                                        <p class="font-small bold">{{actor.firstName}} {{actor.lastName}}</p>
+                                                    </div>
+                                                </li>
+                                            </div>
+                                        </ul>
+                                    </div>
+
+                                    <div id="followers" class="tab-pane fade">
+                                        <ul class="list-group">
+                                            <div ng-repeat="actor in model.followers">
+                                                <li class="list-group-item">
+                                                    <div class="container-fluid">
+                                                        <p class="font-small bold">{{actor.firstName}} {{actor.lastName}}</p>
+                                                    </div>
+                                                </li>
+                                            </div>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

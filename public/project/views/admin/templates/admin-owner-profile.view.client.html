@@ -1,0 +1,339 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Catalog</a>
+            <button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navbar-collapse-info">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="hidden-sm hidden-md hidden-lg">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-search">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-info">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-search">
+            <ul class="hidden-sm hidden-md hidden-lg nav navbar-nav navbar-right margin-left margin-right">
+                <li>
+                    <input type="text" class="input-group form-control" placeholder="Product/Store Name">
+                </li>
+                <li>
+                    <input type="text" class="input-group form-control" placeholder="Location">
+                </li>
+                <li>
+                    <span class="input-group-btn">
+                    <a class="btn btn-default btn-block input-group form-control">Search &nbsp;
+                        <span class="glyphicon glyphicon-search"></span>
+                    </a>
+                </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="hidden-xs col-sm-5">
+                <input type="text" class="form-control" placeholder="Product/Store Name">
+            </div>
+            <div class="hidden-xs col-sm-5">
+                <input type="text" class="form-control" placeholder="Location">
+            </div>
+            <div class="hidden-xs col-sm-2 margin-bottom">
+                <span class="input-group-btn">
+                    <a class="btn btn-default btn-block form-control">Search &nbsp;
+                        <span class="glyphicon glyphicon-search"></span>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="hidden-xs">
+    <div class="blank-lines-60px"></div>
+</div>
+
+<div class="hidden-sm hidden-md hidden-lg">
+    <div class="blank-lines-20px"></div>
+</div>
+
+<div class="container-fluid page-content">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a data-toggle="collapse" data-target="#store">
+                Store
+            </a>
+        </div>
+        <div id="store" class="panel-body collapse">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" data-target="#store-vfl">
+                        Views, Favourites, Likes
+                    </a>
+                </li>
+                <li>
+                    <a data-toggle="tab" data-target="#store-comments">
+                        Comments
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="store-vfl" class="tab-pane fade in active" align="center">
+                    <ul class="list-group hidden-xs">
+                        <li class="list-group-item">
+                            <div class="container-fluid">
+                                <div class="row bold">
+                                    <div class="col-sm-4">
+                                        Views
+                                    </div>
+                                    <div class="col-sm-4">
+                                        Favourites
+                                    </div>
+                                    <div class="col-sm-4">
+                                        Likes
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        {{model.storeViews}}
+                                    </div>
+                                    <div class="col-sm-4">
+                                        {{model.storeFavourites}}
+                                    </div>
+                                    <div class="col-sm-4">
+                                        {{model.storeLikes}}
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="list-group hidden-sm hidden-md hidden-lg">
+                        <li class="list-group-item">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        Views
+                                    </div>
+                                    <div class="col-xs-6">
+                                        {{model.storeViews}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        Favorites
+                                    </div>
+                                    <div class="col-xs-6">
+                                        {{model.storeFavourites}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        Likes
+                                    </div>
+                                    <div class="col-xs-6">
+                                        {{model.storeLikes}}
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="store-comments" class="tab-pane fade">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <textarea ng-model="model.text"
+                                      rows="3"
+                                      class="form-control"
+                                      id="storeComment"
+                                      placeholder="Write a comment..."></textarea>
+                            <a ng-click="model.addToStoreComments()" class="btn btn-primary input-group form-control">
+                                Post
+                            </a>
+                            <ul class="list-group">
+                                <li ng-repeat="comment in model.storeComments | orderBy: '-timestamp'" class="list-group-item">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <p class="bold pull-left">{{comment.user.firstName}} {{comment.user.lastName}}</p>
+                                            <p class="pull-right hidden-xs">{{comment.timestamp}}</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="pull-left thumbnail" style="margin-right: 5%">
+                                            </div>
+                                            <p class="clear">{{comment.text}}</p>
+                                        </div>
+                                        <div class="row">
+                                            <p class="hidden-sm hidden-md hidden-lg pull-right">{{comment.timestamp}}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a data-toggle="collapse" data-target="#product">
+                Products
+            </a>
+        </div>
+        <div id="product" class="panel-body collapse">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" data-target="#product-vfl">
+                        Views, Favourites, Likes
+                    </a>
+                </li>
+                <li>
+                    <a data-toggle="tab" data-target="#product-comments">
+                        Comments
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="product-vfl" class="tab-pane fade in active" align="center">
+                    <ul class="list-group hidden-xs">
+                        <li class="list-group-item">
+                            <div class="container-fluid">
+                                <div class="row bold">
+                                    <div class="col-sm-3">
+                                        Product Details
+                                    </div>
+                                    <div class="col-sm-3">
+                                        Views
+                                    </div>
+                                    <div class="col-sm-3">
+                                        Favourites
+                                    </div>
+                                    <div class="col-sm-3">
+                                        Likes
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li ng-repeat="product in model.products" class="list-group-item">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-sm-3 bold">
+                                        {{product.title}}
+                                        <div class="blank-lines-10px">
+                                            <img src="{{product.image}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{product.views}}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{product.favourites.length}}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{product.likes.length}}
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="list-group hidden-sm hidden-md hidden-lg">
+                        <li ng-repeat="product in model.products" class="list-group-item">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-12 bold">
+                                        {{product.title}}
+                                    </div>
+                                    <div class="col-xs-12 blank-lines-10px">
+                                        <img src="{{product.image}}">
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Views
+                                            </div>
+                                            <div class="col-xs-6">
+                                                {{product.views}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Favourites
+                                            </div>
+                                            <div class="col-xs-6">
+                                                {{product.favourites.length}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Likes
+                                            </div>
+                                            <div class="col-xs-6">
+                                                {{product.likes.length}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="product-comments" class="tab-pane fade">
+                    <!--<div ng-repeat="commen in model.productComments">-->
+                    <ul class="list-group">
+                        <li ng-repeat="productComment in model.productComments" class="list-group-item">
+                            <!--<div class="container-fluid">-->
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-3 pull-left" align="center">
+                                    <p class="font-small bold">{{productComment.commentProduct.title}}</p>
+                                    <img src="{{productComment.commentProduct.image}}">
+                                </div>
+                                <div class="col-xs-12 col-sm-9 pull-right">
+                                            <textarea ng-model="model.text[$index]"
+                                                      rows="3"
+                                                      class="form-control"
+                                                      placeholder="Write a comment..."></textarea>
+                                    <a ng-click="model.addToProductComments($index)" class="btn btn-primary input-group form-control">
+                                        Post
+                                    </a>
+                                </div>
+                                <div ng-repeat="a in productComment.commentUser | orderBy: '-timestamp'" class="col-xs-12 col-sm-9 pull-right">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-4">
+                                                <a class="font-small bold">{{a.user.firstName}} {{a.user.lastName}}</a>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8">
+                                                <p class="font-small">{{a.text}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--</div>-->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

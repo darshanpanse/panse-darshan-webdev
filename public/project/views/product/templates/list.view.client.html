@@ -1,15 +1,17 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Catalog</a>
-            <button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navbar-collapse-info">
+            <a class="navbar-brand" ng-click="model.backButton()"><span class="glyphicon glyphicon-chevron-left"></span></a>
+            <a class="navbar-brand" href="#/">ShopSmart</a>
+            <button type="button" class="navbar-toggle collapsed pull-right w3-pink" data-toggle="collapse" data-target="#navbar-collapse-info">
                 <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
             <div class="hidden-sm hidden-md hidden-lg">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-search">
+                <button type="button" class="navbar-toggle collapsed w3-pink" data-toggle="collapse" data-target="#navbar-collapse-search">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="glyphicon glyphicon-search"></span>
                 </button>
@@ -18,27 +20,28 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse-info">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#"><i class="fa fa-sign-in"></i> Login</a></li>
-                <li><a href="#"><i class="fa fa-user"></i> Register</a></li>
+                <li><a ng-click="model.checkLogProfNav(model.productName, model.location, model.radius, model.sorting, model.price)">
+                    <i class="fa {{model.logProf_icon}}"></i>
+                    {{model.logProf}}
+                    </a></li>
+                <li><a ng-click="model.checkLogRegNav()"><i class="fa {{model.logReg_icon}}"></i> {{model.logReg}}</a></li>
+                <li ng-if="model.currentActor.role == 'ADMIN'"><a href="#/actor/admin">Admin</a></li>
             </ul>
         </div>
 
         <div class="collapse navbar-collapse" id="navbar-collapse-search">
             <ul class="hidden-sm hidden-md hidden-lg nav navbar-nav navbar-right margin-left margin-right">
                 <li>
-                    <input type="text" class="input-group form-control" placeholder="Product/Store Name">
+                    <input ng-model="model.productName" type="text" class="input-group form-control" placeholder="Product/Store Name">
                 </li>
                 <li>
-                    <input type="text" class="input-group form-control" placeholder="Location">
+                    <input ng-model="model.location" type="text" class="input-group form-control" placeholder="Location">
                 </li>
                 <li>
                     <span class="input-group-btn">
-                    <a class="btn btn-default btn-block input-group form-control">Search &nbsp;
-                        <!--<i class="fa fa-search"></i>-->
+                    <button ng-click="model.search(model.productName, model.location, model.radius, model.sorting)" class="w3-btn w3-pink input-group form-control">Search &nbsp;
                         <span class="glyphicon glyphicon-search"></span>
-                    </a>
+                    </button>
                 </span>
                 </li>
             </ul>
@@ -48,17 +51,16 @@
     <div class="container-fluid">
         <div class="row">
             <div class="hidden-xs col-sm-5">
-                <input type="text" class="form-control" placeholder="Product/Store Name">
+                <input ng-model="model.productName" type="text" class="form-control" placeholder="Product/Store Name">
             </div>
             <div class="hidden-xs col-sm-5">
-                <input type="text" class="form-control" placeholder="Location">
+                <input ng-model="model.location" type="text" class="form-control" placeholder="Location">
             </div>
             <div class="hidden-xs col-sm-2 margin-bottom">
                 <span class="input-group-btn">
-                    <a class="btn btn-default btn-block form-control">Search &nbsp;
-                        <!--<i class="fa fa-search"></i>-->
+                    <button ng-click="model.search(model.productName, model.location, model.radius, model.sorting)" class="w3-btn w3-pink form-control">Search &nbsp;
                         <span class="glyphicon glyphicon-search"></span>
-                    </a>
+                    </button>
                 </span>
             </div>
         </div>
@@ -66,49 +68,69 @@
 
     <div class="container-fluid">
         <div class="panel-group row">
-            <div class="col-xs-3">
-                <div class="dropdown">
-                    <a class="btn btn-default btn-block dropdown-toggle font-mobile-xx-small" type="button" data-toggle="dropdown">
-                        Distance
-                    </a>
-                    <p class="dropdown-menu font-mobile-xx-small">
-                        11111
-                    </p>
+            <div class="col-xs-4 hidden-lg">
+                <button type="button" class="w3-block w3-btn w3-green" data-toggle="collapse" data-target="#collapse-radius">
+                    Radius
+                </button>
+            </div>
+
+
+            <div class="col-xs-4 hidden-lg">
+                <button type="button" class="w3-block w3-btn w3-green" data-toggle="collapse" data-target="#collapse-sortby">
+                    SortBy
+                </button>
+            </div>
+
+            <div class="col-xs-4 hidden-lg">
+                <button type="button" class="w3-block w3-btn w3-green" data-toggle="collapse" data-target="#collapse-stores">
+                    <span class="sr-only">Toggle navigation</span>
+                    Stores
+                </button>
+            </div>
+            <div class="col-lg-1 hidden-xs hidden-sm hidden-md"></div>
+            <div class="col-lg-4 hidden-xs hidden-sm hidden-md" align="center">
+                <button type="button" class="w3-block w3-btn w3-green" data-toggle="collapse" data-target="#collapse-sortby">
+                    SortBy
+                </button>
+            </div>
+            <div class="col-lg-2 hidden-xs hidden-sm hidden-md"></div>
+            <div class="col-lg-4 hidden-xs hidden-sm hidden-md" align="center">
+                <button type="button" class="w3-block w3-btn w3-green" data-toggle="collapse" data-target="#collapse-stores">
+                    <span class="sr-only">Toggle navigation</span>
+                    Stores
+                </button>
+            </div>
+        </div>
+
+            <div class="collapse" id="collapse-radius">
+                <div id="slider-radius"></div>
+                <!--<input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>-->
+            </div>
+            <div class="collapse" id="collapse-price">
+                <div id="slider-price"></div>
+                <div id="min"></div>
+                <div id="max"></div>
+            </div>
+
+            <div class="collapse" id="collapse-sortby">
+                <div class="list-group">
+                    <a class="list-group-item" ng-click="model.search(model.productName, model.location, model.radius, 'relevance')">Relevance</a>
+                    <a class="list-group-item" ng-click="model.search(model.productName, model.location, model.radius, 'distance')">Distance</a>
+                    <a class="list-group-item" ng-click="model.search(model.productName, model.location, model.radius, 'price_asc')">Price low to high</a>
+                    <a class="list-group-item" ng-click="model.search(model.productName, model.location, model.radius, 'price_desc')">Price high to low</a>
                 </div>
             </div>
 
-            <div class="col-xs-3">
-                <div class="dropdown">
-                    <a class="btn btn-default btn-block dropdown-toggle font-mobile-xx-small" type="button" data-toggle="dropdown">
-                        Sort By
-                    </a>
-                    <p class="dropdown-menu font-mobile-xx-small">
-                        222222
-                    </p>
+            <div class="collapse" id="collapse-stores">
+                <div class="list-group">
+                    <div ng-repeat="store in model.allGoodzerResults.stores">
+                        <a class="list-group-item" class="btn" id="{{store.id}}" ng-click="model.searchInStore(store.id)">
+                            {{store.name}}
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-xs-3">
-                <div class="dropdown">
-                    <a class="btn btn-default btn-block dropdown-toggle font-mobile-xx-small" type="button" data-toggle="dropdown">
-                        Price
-                    </a>
-                    <p class="dropdown-menu font-mobile-xx-small">
-                        3333
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-xs-3 col-sm-3">
-                <div class="dropdown">
-                    <a class="btn btn-default btn-block dropdown-toggle font-mobile-xx-small" type="button" data-toggle="dropdown">
-                        Store
-                    </a>
-                    <p class="dropdown-menu font-mobile-xx-small">
-                        4444
-                    </p>
-                </div>
-            </div>
         </div>
     </div>
 </nav>
@@ -123,57 +145,57 @@
 
 <div class="container-fluid page-content">
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-lg-4 item-list">
             <ul class="list-group">
                 <li class="list-group-item">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <p class="font-small bold">New Shoes</p>
-                                <p class="font-small">$125</p>
-                                <p class="font-x-small">Under Armour</p>
-                                <p class="font-x-small">212 Hemenway Street</p>
-                            </div>
-                            <div class="col-xs-6">
-                                <div class="thumbnail"></div>
-                            </div>
-                        </div>
-                    </div>
+                    {{model.productsFound}} products in {{model.goodzerResults.stores_found}} stores within a {{model.radius}}-mile radius.
                 </li>
-                <li class="list-group-item">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <p class="font-small bold">New Shoes</p>
-                                <p class="font-small">$125</p>
-                                <p class="font-x-small">Under Armour</p>
-                                <p class="font-x-small">212 Hemenway Street</p>
+                <div ng-repeat="store in model.goodzerResults.stores">
+                    <div ng-repeat="product in store.products">
+                        <li class="list-group-item">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-7 col-sm-8">
+                                        <a class="bold" href="#/product/{{model.productName}}/{{product.id}}/location/{{model.location}}/store/{{store.id}}/radius/{{model.radius}}/sorting/{{model.sorting}}/price/{{model.price}}">{{product.title}}</a>
+                                        <p ng-show="product.original_price">$<strike>{{product.original_price}}</strike>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: lawngreen; font-size: 25px">${{product.price}}</b></p>
+                                        <p ng-show="product.original_price == undefined"><b style="color: lawngreen; font-size: 25px">${{product.price}}</b></p>
+                                        <a href="#/store/{{model.productName}}/{{product.id}}/location/{{model.location}}/store/{{store.id}}/radius/{{model.radius}}/sorting/{{model.sorting}}/price/{{model.price}}">{{store.name}}</a>
+
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                                {{store.locations.length}} local stores
+                                            </a>
+                                            <ul ng-repeat="location in store.locations" class="dropdown-menu list-group">
+                                                <li class="list-group-item"><a>{{location.address}}</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-4 hidden-sm hidden-md hidden-lg">
+                                        <img src="{{product.image}}" width="100%" height="100%">
+                                    </div>
+                                    <div class="col-sm-4 hidden-xs pull-right">
+                                        <img src="{{product.image}}" width="100%" height="100%">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-xs-6">
-                                <div class="thumbnail"></div>
-                            </div>
-                        </div>
+                        </li>
                     </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <p class="font-small bold">New Shoes</p>
-                                <p class="font-small">$125</p>
-                                <p class="font-x-small">Under Armour</p>
-                                <p class="font-x-small">212 Hemenway Street</p>
-                            </div>
-                            <div class="col-xs-6">
-                                <div class="thumbnail"></div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                </div>
             </ul>
         </div>
-        <div class="col-sm-8 hidden-xs pull-right">
-            <div id="google-map"></div>
+
+        <div class="col-lg-8 hidden-xs hidden-sm hidden-md pull-right">
+            <ng-map class="list-map" zoom="11" center="{{model.userLocation.lat}},{{model.userLocation.lng}}">
+                <shape id="circle" name="circle" centered="true"
+                       stroke-color='#FF0000' stroke-opacity="0.8" stroke-weight="1"
+                       center="{{model.userLocation.lat}},{{model.userLocation.lng}}" radius="{{model.radius * 1609.344}}" editable="true">
+                </shape>
+                <marker ng-repeat="loc in model.storeInfo"
+                        position="{{loc.lat}},{{loc.lng}}"
+                        title="{{loc.name}}      {{loc.address}}, {{loc.city}}, {{loc.state}}">
+                </marker>
+            </ng-map>
         </div>
     </div>
 </div>

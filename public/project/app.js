@@ -1,3 +1,3 @@
 (function () {
-    angular.module('CatalogApp', ["ngRoute"]);
+    angular.module('CatalogApp', ["ngRoute", "ngMap"]);
 })();

@@ -16,11 +16,11 @@
         return api;
 
         function createWebsite(userId, website) {
-            return $http.post("/api/customer/" + userId + "/website", website);
+            return $http.post("/api/actor/" + userId + "/website", website);
         }
 
         function findWebsitesByUser(userId) {
-            return $http.get("/api/customer/" + userId + "/website/");
+            return $http.get("/api/actor/" + userId + "/website/");
         }
 
         function findWebsiteById(websiteId) {

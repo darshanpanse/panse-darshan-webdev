@@ -1,0 +1,187 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/">ShopSmart</a>
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <a ng-click="model.logout()">
+                        <span class="glyphicon glyphicon-log-out"></span> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<ul class="nav nav-tabs">
+    <li class="active">
+        <a data-toggle="tab" data-target="#customer">Customers</a>
+    </li>
+    <li>
+        <a data-toggle="tab" data-target="#store-owner">Store Owners</a>
+    </li>
+    <li>
+        <a data-toggle="tab" data-target="#request">Requests</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div id="customer" class="tab-pane fade in active">
+        <ul class="list-group">
+            <li ng-repeat="customer in model.allCustomers" class="list-group-item">
+                <div class="row hidden-xs">
+                    <div class="col-sm-8">
+                        <p></p><b>Username:</b> {{customer.username}}</p>
+                        <p><b>Password:</b> {{customer.password}}</p>
+                        <p><b>Name:</b> {{customer.firstName}} {{customer.lastName}}</p>
+                        <p>{{customer.dob}}</p>
+                        <div ng-if="customer.city || customer.state">
+                            <p>{{customer.city}}, {{customer.state}}</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <a ng-click="model.getCustomerProfile(customer._id)" class="btn btn-success">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a ng-click="model.deleteAccount(customer._id)" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="row hidden-sm hidden-md hidden-lg">
+                    <div class="col-xs-9">
+                        <p></p><b>Username:</b> {{customer.username}}</p>
+                        <p><b>Password:</b> {{customer.password}}</p>
+                        <p><b>Name:</b> {{customer.firstName}} {{customer.lastName}}</p>
+                        <p>{{customer.dob}}</p>
+                        <div ng-if="customer.city || customer.state">
+                            <p>{{customer.city}}, {{customer.state}}</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div style="padding-bottom: 20px">
+                            <a ng-click="model.getCustomerProfile(customer._id)" class="btn btn-success">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                        </div>
+                        <div>
+                            <a ng-click="model.deleteAccount(customer._id)" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div id="store-owner" class="tab-pane fade">
+        <ul class="list-group">
+            <li ng-repeat="owner in model.allOwners" class="list-group-item">
+                <div class="row hidden-xs">
+                    <div class="col-sm-8">
+                        <p></p><b>Username:</b> {{owner.username}}</p>
+                        <p><b>Password:</b> {{owner.password}}</p>
+                        <p><b>Name:</b> {{owner.firstName}} {{owner.lastName}}</p>
+                        <p>{{owner.dob}}</p>
+                        <div ng-if="owner.city || owner.state">
+                            <p>{{owner.city}}, {{owner.state}}</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <a ng-click="model.getOwnerProfile(owner._id)" class="btn btn-success">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a ng-click="model.deleteAccount(owner._id)" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="row hidden-sm hidden-md hidden-lg">
+                    <div class="col-xs-9">
+                        <p></p><b>Username:</b> {{owner.username}}</p>
+                        <p><b>Password:</b> {{owner.password}}</p>
+                        <p><b>Name:</b> {{owner.firstName}} {{owner.lastName}}</p>
+                        <p>{{owner.dob}}</p>
+                        <div ng-if="owner.city || owner.state">
+                            <p>{{owner.city}}, {{owner.state}}</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div style="padding-bottom: 20px">
+                            <a ng-click="model.getOwnerProfile(owner._id)" class="btn btn-success">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                        </div>
+                        <div>
+                            <a ng-click="model.deleteAccount(owner._id)" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div id="request" class="tab-pane fade">
+        <ul class="list-group">
+            <li ng-repeat="request in model.allRequests" class="list-group-item">
+                <div class="row hidden-xs">
+                    <div class="col-sm-8">
+                        <p></p><b>Username:</b> {{request.username}}</p>
+                        <p><b>Password:</b> {{request.password}}</p>
+                        <p><b>Owner Name:</b> {{request.firstName}} {{request.lastName}}</p>
+                        <p><b>Store Name:</b> {{request.storeName}}</p>
+                        <p><b>Email:</b> {{request.email}}</p>
+                        <p><b>Phone:</b> {{request.phone}}</p>
+                        <p>{{request.dob}}</p>
+                        <div ng-if="request.city || request.state">
+                            <p>{{request.city}}, {{request.state}}</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <a ng-click="model.acceptRegistrationRequest(request)" class="btn btn-success">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a ng-click="model.declineRegistrationRequest(request._id)" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="row hidden-sm hidden-md hidden-lg">
+                    <div class="col-xs-9">
+                        <p></p><b>Username:</b> {{request.username}}</p>
+                        <p><b>Password:</b> {{request.password}}</p>
+                        <p><b>Owner Name:</b> {{request.firstName}} {{request.lastName}}</p>
+                        <p><b>Store Name:</b> {{request.storeName}}</p>
+                        <p><b>Email:</b> {{request.email}}</p>
+                        <p><b>Phone:</b> {{request.phone}}</p>
+                        <p>{{request.dob}}</p>
+                        <div ng-if="request.city || request.state">
+                            <p>{{request.city}}, {{request.state}}</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div style="padding-bottom: 100px">
+                            <a ng-click="model.acceptRegistrationRequest(request)" class="btn btn-success">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </a>
+                        </div>
+                        <div>
+                            <a ng-click="model.declineRegistrationRequest(request._id)" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

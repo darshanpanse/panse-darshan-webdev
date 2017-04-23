@@ -51,7 +51,7 @@
                 WebsiteService
                     .createWebsite(vm.userId, newWebsite)
                     .success(function () {
-                        $location.url("/customer/"+vm.userId+"/website");
+                        $location.url("/actor/"+vm.userId+"/website");
                     })
                     .error(function () {
                         vm.error = "Could not create new Website, Server not responding"
@@ -93,7 +93,7 @@
                 WebsiteService
                     .updateWebsite(vm.websiteId, newWebsite)
                     .success(function () {
-                        $location.url("/customer/"+vm.userId+"/website");
+                        $location.url("/actor/"+vm.userId+"/website");
                     })
                     .error(function () {
                         vm.error = "Website not updated!";
@@ -105,7 +105,7 @@
             WebsiteService
                 .deleteWebsite(vm.websiteId)
                 .success(function () {
-                    $location.url("/customer/"+vm.userId+"/website");
+                    $location.url("/actor/"+vm.userId+"/website");
                 })
                 .error(function () {
                     vm.error = "Could not delete website, Server not responding";

@@ -1,0 +1,93 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" ng-click="model.backButton()"><span class="glyphicon glyphicon-chevron-left"></span></a>
+            <a class="navbar-brand" href="#/">ShopSmart</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div class="container page-content register-container">
+    <div class="w3-container w3-teal">
+        <h2>Sign Up</h2>
+    </div>
+    <form name="registerForm" class="w3-card-4 w3-container w3-border" novalidate>
+        <div class="alert alert-danger" ng-show="model.message">
+            {{model.message}}
+        </div>
+        <p>
+            <label>Username</label>
+            <input ng-model="model.actor.username" name="username" type="text" class="w3-input" required>
+            <span ng-if="registerForm.$submitted && registerForm.username.$error.required" class="color-red">*required</span>
+        </p>
+        <p>
+            <label>First Name</label>
+            <input ng-model="model.actor.firstName" name="firstName" type="text" class="w3-input" required>
+            <span ng-if="registerForm.$submitted && registerForm.firstName.$error.required" class="color-red">*required</span>
+        </p>
+        <p>
+            <label>Last Name</label>
+            <input ng-model="model.actor.lastName" name="lastName" type="text" class="w3-input" required>
+            <span ng-if="registerForm.$submitted && registerForm.lastName.$error.required" class="color-red">*required</span>
+        </p>
+        <p>
+            <label>Email</label>
+            <input ng-model="model.actor.email" name="email" type="email" class="w3-input" required>
+            <span ng-if="registerForm.$submitted && registerForm.email.$error.required" class="color-red">*required</span>
+            <span ng-if="registerForm.$submitted && registerForm.email.$error.email" class="color-red">*invalid email</span></span>
+        </p>
+        <p>
+            <label>Password</label>
+            <input ng-model="model.actor.password" name="password" type="password" class="w3-input" required>
+            <span ng-if="registerForm.$submitted && registerForm.password.$error.required" class="color-red">*required</span>
+        </p>
+        <p>
+            <label>Confirm Password</label>
+            <input ng-model="model.actor.confirmPassword" name="confirmPassword" type="password" class="w3-input">
+            <span ng-if="registerForm.$submitted && model.passwordsMatch == false" class="color-red">Passwords do not match</span>
+        </p>
+        <p>
+            <label>Phone Number</label>
+            <input ng-model="model.actor.phone"
+                   name="phone"
+                   type="text"
+                   class="w3-input input-medium bfh-phone"
+                   data-format="d (ddd) ddd-dddd"
+                   placeholder="1 (555) 555-5555">
+        </p>
+        <div class="form-group">
+            <label class="radio-inline"><input ng-click="model.hideInput()" type="radio" ng-model="userType" name="userType" value="user">User</label>
+            <label class="radio-inline"><input ng-click="model.showInput()" type="radio" ng-model="userType" name="userType" value="storeOwner">Store Owner</label>
+            <div ng-if="registerForm.$submitted && userType!='user' && userType!='storeOwner'">
+                <span class="color-red">*required</span>
+            </div>
+        </div>
+        <div ng-if="model.storeOwnerSelected">
+            <p>
+                <label>Store Name</label>
+                <input ng-model="model.actor.storeName" name="storeName" type="text" class="w3-input" required>
+                <span ng-if="registerForm.$submitted && registerForm.storeName.$error.required" class="color-red">*required</span>
+            </p>
+            <p>
+                <label>Store Address</label>
+                <input ng-model="model.actor.storeAddress" name="storeAddress" type="text" class="w3-input" required>
+                <span ng-if="registerForm.$submitted && registerForm.storeAddress.$error.required" class="color-red">*required</span>
+            </p>
+            <p>
+                <label>Store Id</label>
+                <input ng-model="model.actor.storeId" name="storeId" type="text" class="w3-input" required>
+                <span ng-if="registerForm.$submitted && registerForm.storeId.$error.required" class="color-red">*required</span>
+            </p>
+            <p style="font-size: x-small; color: #c43c35">To be considered for registration, enter the storeId allotted to your store By Goodzer</p>
+        </div>
+        <button type="submit" ng-click="registerForm.$valid && model.register(model.actor)" class="btn btn-success btn-block">Sign Up</button>
+        <hr>
+        <p class="font-small">Already have an account?<a class="pull-right" href="#/actor/login">Sign In</a></p>
+    </form>
+</div>
