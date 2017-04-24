@@ -13,9 +13,9 @@
         vm.declineRegistrationRequest = declineRegistrationRequest;
         vm.deleteAccount = deleteAccount;
         vm.logout = logout;
-        vm.showCustomerTable = false;
-        vm.showStoreOwnerTable = false;
-        vm.showRequestsTable = false;
+        // vm.showCustomerTable = false;
+        // vm.showStoreOwnerTable = false;
+        // vm.showRequestsTable = false;
 
         function init() {
             findAllCustomers();
@@ -65,8 +65,9 @@
 
         function acceptRegistrationRequest(request) {
             request.requestStatus = 'APPROVED';
+            request.accountStatus = 'EXISTS';
             ActorService
-                .createActor(request)
+                .register(request)
                 .success(function (response) {
                     StoreService
                         .getStore(request.storeId)
@@ -76,9 +77,18 @@
                             StoreService
                                 .updateStore(store)
                                 .success(function (response) {
-                                    findAllCustomers();
-                                    findAllStoreOwners();
-                                    findAllRegistrationRequests();
+                                    ActorService
+                                        .removeRegistrationRequest(request._id)
+                                        .success(function () {
+                                            // location.reload();
+                                            // $location.url("/actor/admin");
+                                            findAllCustomers();
+                                            findAllStoreOwners();
+                                            findAllRegistrationRequests();
+                                        })
+                                        .error(function () {
+                                            vm.error = "Could not delete request";
+                                        });
                                 })
                                 .error(function () {
                                     console.log("could not update store");
@@ -124,11 +134,11 @@
             ActorService
                 .findAllRegistrationRequests()
                 .success(function (requests) {
-                    vm.showCustomerTable = false;
-                    vm.showStoreOwnerTable = false;
-                    vm.showRequestsTable = true;
+                    // vm.showCustomerTable = false;
+                    // vm.showStoreOwnerTable = false;
+                    // vm.showRequestsTable = true;
                     vm.allRequests = requests;
-                    console.log(vm.allRequests);
+                    // console.log(vm.allRequests);
                 })
                 .error(function (error) {
                     vm.error = "Could not get request info.";
@@ -139,10 +149,15 @@
             ActorService
                 .findAllCustomers()
                 .success(function (customers) {
-                    vm.showStoreOwnerTable = false;
-                    vm.showRequestsTable = false;
-                    vm.showCustomerTable = true;
-                    vm.allCustomers = customers;
+                    vm.allCustomers = [];
+                    for(var c in customers) {
+                        if(customers[c].accountStatus == "EXISTS") {
+                            // vm.showStoreOwnerTable = false;
+                            // vm.showRequestsTable = false;
+                            // vm.showCustomerTable = true;
+                            vm.allCustomers.push(customers[c]);
+                        }
+                    }
                 })
                 .error(function (error) {
                     vm.error = "Could not get customer info.";
@@ -153,10 +168,19 @@
             ActorService
                 .findAllStoreOwners()
                 .success(function (owners) {
-                    vm.showCustomerTable = false;
-                    vm.showRequestsTable = false;
-                    vm.showStoreOwnerTable = true;
-                    vm.allOwners = owners;
+                    vm.allOwners = [];
+                    for(var c in owners) {
+                        if(owners[c].accountStatus == "EXISTS") {
+                            // vm.showStoreOwnerTable = false;
+                            // vm.showRequestsTable = false;
+                            // vm.showCustomerTable = true;
+                            vm.allOwners.push(owners[c]);
+                        }
+                    }
+                    // vm.showCustomerTable = false;
+                    // vm.showRequestsTable = false;
+                    // vm.showStoreOwnerTable = true;
+                    // vm.allOwners = owners;
                 })
                 .error(function (error) {
                     vm.error = "Could not get owners info.";

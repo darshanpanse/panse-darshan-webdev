@@ -4,6 +4,8 @@ module.exports = function () {
     mongoose.Promise = require('q').Promise;
     var ActorSchema = require("./actor.schema.server.js")();
     var ActorModel = mongoose.model('ActorModel', ActorSchema);
+    var bcrypt = require("bcrypt-nodejs");
+    ActorModel.create({username: "admin", password: bcrypt.hashSync("admin"), role: "ADMIN", accountStatus: 'EXISTS'});
 
     var api = {
         createActor: createActor,
@@ -450,7 +452,8 @@ module.exports = function () {
             });
     }
 
-    function findActorByCredentials(username, password) {
+function findActorByCredentials(username, password) {
+        console.log("in model");
         return ActorModel.findOne({username: username, password: password});
     }
 

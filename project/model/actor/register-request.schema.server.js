@@ -12,6 +12,7 @@ module.exports = function () {
         storeName: String,
         storeAddress: String,
         role: {type: String, enum: ['STOREOWNER']},
+        accountStatus: {type: String, enum: ['EXISTS', 'DELETED']},
         dateCreated: {type: Date, default: Date.now()}
     });
 

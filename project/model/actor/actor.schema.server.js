@@ -13,7 +13,7 @@ module.exports = function () {
         city: String,
         zipCode: Number,
         gender: String,
-        dob: {type: Date},
+        dob: String,
         favourite_products: [String],
         liked_products: [String],
         products_commented_on: [{_apiID: String, text: String, timestamp: Date}],
@@ -34,10 +34,6 @@ module.exports = function () {
             id:    String,
             token: String
         },
-        // facebook: {
-        //     id:    String,
-        //     token: String
-        // },
         dateCreated: {type: Date, default: Date.now()}
     });
 

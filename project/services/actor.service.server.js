@@ -1,7 +1,7 @@
 module.exports = function (app, actorModel) {
 
     var passport = require('passport');
-    //var bcrypt = require("bcrypt-nodejs");
+    var bcrypt = require("bcrypt-nodejs");
     var LocalStrategy = require('passport-local').Strategy;
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
     //var FacebookStrategy = require('passport-facebook').Strategy;
@@ -449,17 +449,24 @@ module.exports = function (app, actorModel) {
 
     function localStrategy(username, password, done) {
         actorModel
-            .findActorByCredentials(username, password)
+            .findActorByUsername(username)
             .then(function(user) {
-                if (!user && user.accountStatus == 'DELETED') {
-                    console.log("1");
-                    return done(null, null);
+                if(user && user.accountStatus == 'EXISTS' && bcrypt.compareSync(password, user.password)) {
+                    return done(null, user);
+                } else {
+                    return done(null, false);
                 }
-                return done(null, user);
-                }, function(err) {
-                    if (err) {
-                        return done(err);
-                    }
+                // if (!user || user.accountStatus == 'DELETED') {
+                //     console.log("1");
+                //     return done(null, false);
+                // }
+                // console.log("in signin");
+                // return done(null, user);
+                // }, function(err) {
+                //     if (err) {
+                //         console.log(err);
+                //         return done(err);
+                //     }
             });
     }
 
@@ -483,7 +490,7 @@ module.exports = function (app, actorModel) {
 
     function register(req, res) {
         var actor = req.body;
-        // actor.password = bcrypt.hashSync(actor.password);
+        actor.password = bcrypt.hashSync(actor.password);
         actorModel
             .createActor(actor)
             .then(function (actor) {
@@ -555,7 +562,7 @@ module.exports = function (app, actorModel) {
 
     function createActor(req, res) {
         var newActor = req.body;
-        newActor.password = bcrypt.hashSync(newActor.password);
+        // newActor.password = bcrypt.hashSync(newActor.password);
 
         actorModel
             .createActor(newActor)

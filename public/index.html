@@ -1,62 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Portfolio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no  initial-scale=1">
-    <title>Web Dev Course Home Page</title>
     <style>
-        .bg1 {
+        body {
+            font: 20px Montserrat, sans-serif;
+            line-height: 1.8;
+            color: #f5f6f7;
+        }
+        p {font-size: 16px;}
+        .margin {margin-bottom: 45px;}
+        .bg-1 {
+            background-color: #1abc9c; /* Green */
             color: #ffffff;
         }
-        ul.nav-pills {
-            margin-top: 20px;
+        .bg-2 {
+            background-color: #474e5d; /* Dark Blue */
+            color: #ffffff;
         }
-        div.col-sm-9 div {
-            font-size: 28px;
+        .bg-3 {
+            background-color: #ffffff; /* White */
+            color: #555555;
         }
-        div.col-md-5 {
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 60px;
+        .bg-4 {
+            background-color: #2f2f2f; /* Black Gray */
+            color: #fff;
         }
-        #hdr {
-            background-color: steelblue;
+        .container-fluid {
+            padding-top: 70px;
+            padding-bottom: 70px;
+        }
+        .navbar {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border: 0;
+            border-radius: 0;
+            margin-bottom: 0;
+            font-size: 12px;
+            letter-spacing: 5px;
+        }
+        .navbar-nav  li a:hover {
+            color: #1abc9c !important;
         }
     </style>
 </head>
-
 <body>
-    <div class="bg1">
-        <div class="container-fixed text-center" id="hdr">
-            <div class="row">
-                <div class="col-md-3">
-                    <img src="webdev.jpg" alt="web dev" width="320" height="230">
-                </div>
-                <div class="col-md-5">
-                    <h1>Web Dev Course Home Page</h1>
-                </div>
-                <div class="col-md-4">
-                    <img src="mypic.JPG" class="img-circle" alt="my pic" width="200" height="200">
-                    <p>I am Darshan Panse</p>
-                </div>
-            </div>
-        </div>
 
-        <div class="container">
-            <div class="row">
-                <nav class="col-sm-3">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="project/project-home.html">Project</a></li>
-                        <li><a href="assignment/index.html">Assignments</a></li>
-                        <li><a href="test/index.html">Test MongoDB</a></li>
-                        <li><a href="https://github.com/darshanpanse/panse-darshan-webdev">My github repository</a> </li>
-                    </ul>
-                </nav>
-            </div>
+<!-- Navbar -->
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Me</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#div1">WHO</a></li>
+                <li><a href="#div2">WHAT</a></li>
+                <li><a href="#div3">WHERE</a></li>
+            </ul>
         </div>
     </div>
+</nav>
+
+<!-- First Container -->
+<div id="div1" class="container-fluid bg-1 text-center">
+    <h3 class="margin">Who Am I?</h3>
+    <img src="mypic.JPG" class="img-responsive img-circle margin" style="display:inline" alt="mypic" width="350" height="350">
+    <h3>I am a Computer Science graduate student</h3>
+    <h3>at Northeastern University</h3>
+</div>
+
+<!-- Second Container -->
+<div id="div2" class="container-fluid bg-2 text-center">
+    <h3 class="margin">What do I do?</h3>
+    <p>I am an enthusiastic technology lover.</p>
+    <p>I develop web applications.</p>
+    <p>Recently, I developed a web application using MEAN stack called <h3><a href="project/index.html">ShopSmart</a></h3> which finds products from local stores for users.</p>
+    <p>I Developed a web application using MEAN stack called<h3><a href="assignment/index.html">WebsiteBuilder</a></h3> which builds customized blogging websites for its users.</p>
+    <a href="https://www.youtube.com/watch?v=SZJYMp8Z9v0" class="btn btn-default btn-lg">
+        <span class="glyphicon glyphicon-facetime-video"></span> ShopSmart
+    </a>
+</div>
+
+<!-- Third Container (Grid) -->
+<div id="div3" class="container-fluid bg-3 text-center">
+    <h3 class="margin">Where To Find Me?</h3><br>
+    <p>Email Id 1 : panse.d@husky.neu.edu</p>
+    <p>Email Id 2: darsh.panse@gmail.com</p>
+    <p>Github : <a href="https://github.com/darshanpanse/panse-darshan-webdev">https://github.com/darshanpanse/panse-darshan-webdev</a></p>
+    <p>LinkedIn : <a href="https://www.linkedin.com/in/darshan-panse-378b56124">www.linkedin.com/in/darshan-panse-378b56124</a></p>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center">
+    <p>Northeastern University webdev course homepage</p>
+</footer>
+
 </body>
 </html>

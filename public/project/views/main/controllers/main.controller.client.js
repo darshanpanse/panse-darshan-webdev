@@ -68,7 +68,11 @@
                         if(actor == "0") {
                             $location.url("/actor/login");
                         } else {
-                            $location.url("/actor/profile");
+                            if(actor.role == "STOREOWNER") {
+                                $location.url("/actor/storeowner");
+                            } else {
+                                $location.url("/actor/profile");
+                            }
                         }
                     }
                 });
