@@ -62,7 +62,7 @@
             WidgetService
                 .createWidget(vm.pageId, newWidget)
                 .success(function (newWidget) {
-                    $location.url("/actor/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+newWidget._id);
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+newWidget._id);
                 })
                 .error(function () {
                     vm.error = "Could not create new widget, Server not responding";
@@ -110,7 +110,7 @@
                 WidgetService
                     .updateWidget(vm.widgetId, newWidget)
                     .success(function (widget) {
-                        $location.url("/actor/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
                     })
                     .error(function () {
                         vm.error = "Could not edit widget";
@@ -122,7 +122,7 @@
             WidgetService
                 .deleteWidget(vm.widgetId)
                 .success(function () {
-                    $location.url("/actor/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
                 })
                 .error(function () {
                     vm.error = "Could not delete widget, Server not responding";

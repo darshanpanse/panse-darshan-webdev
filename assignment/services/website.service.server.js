@@ -1,9 +1,9 @@
 module.exports = function (app, websiteModel) {
 
-    app.get("/api/actor/:userId/website", findAllWebsitesForUser);
+    app.get("/api/user/:userId/website", findAllWebsitesForUser);
     app.get("/api/website/:websiteId", findWebsiteById);
     app.put("/api/website/:websiteId", updateWebsite);
-    app.post("/api/actor/:userId/website", createWebsiteForUser);
+    app.post("/api/user/:userId/website", createWebsiteForUser);
     app.delete("/api/website/:websiteId", deleteWebsite);
 
     function findAllWebsitesForUser(req, res) {
@@ -65,6 +65,7 @@ module.exports = function (app, websiteModel) {
     }
 
     function deleteWebsite(req, res) {
+        console.log("hi");
         var websiteId = req.params.websiteId;
         websiteModel
             .deleteWebsite(websiteId)

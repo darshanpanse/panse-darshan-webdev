@@ -59,16 +59,19 @@ module.exports = function () {
     }
 
     function deleteWebsite(websiteId) {
+        console.log("hello");
         // return WebsiteModel.remove({_id: websiteId});
         return WebsiteModel
             .findOne({_id: websiteId})
             .then(function (website) {
+                console.log("1");
                 var websiteUserId = website._user;
                 return deleteWebsiteFromUser(websiteUserId, websiteId)
                     .then(function () {
+                        console.log("2");
                         var count = website.pages.length;
                         return deleteWebsitePages(website.pages, count)
-                            .then(function () {
+                            .then(function (response) {
                                 return WebsiteModel.remove({_id: websiteId});
                             }, function (error) {
                                 return error;
@@ -99,7 +102,7 @@ module.exports = function () {
 
     function deleteWebsitePages(pages, count) {
         if(count == 0) {
-            return;
+            return "hello";
         }
         --count;
         return model.pageModel

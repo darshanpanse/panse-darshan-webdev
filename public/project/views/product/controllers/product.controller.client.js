@@ -24,9 +24,6 @@
             vm.sorting = $routeParams['sorting'];
             vm.price = $routeParams['price'];
 
-            console.log(vm.radius);
-            console.log(vm.sorting);
-            console.log(vm.price);
             checkLogin();
             googleMapHandler();
 
@@ -51,46 +48,8 @@
                     })
                     .slider('value', vm.radius);
             });
-
-            // $("#slider-price").slider({
-            //     range: true,
-            //     min: 30,
-            //     max: 120,
-            //     step: 1,
-            //     values: [30, 120],
-            //     slide: function(event, ui) {
-            //         var delay = function() {
-            //             var handleIndex = $(ui.handle).data('index.uiSliderHandle');
-            //             var label = handleIndex == 0 ? '#min' : '#max';
-            //             $(label).html('$' + ui.value).position({
-            //                 my: 'center top',
-            //                 at: 'center bottom',
-            //                 of: ui.handle,
-            //                 offset: "0, 10"
-            //             });
-            //         };
-            //
-            //         // wait for the ui.handle to set its position
-            //         setTimeout(delay, 5);
-            //     }
-            // });
-            //
-            // $('#min').html('$' + $('#slider-price').slider('values', 0)).position({
-            //     my: 'center top',
-            //     at: 'center bottom',
-            //     of: $('#slider-price a:eq(0)'),
-            //     offset: "0, 10"
-            // });
-            //
-            // $('#max').html('$' + $('#slider-price').slider('values', 1)).position({
-            //     my: 'center top',
-            //     at: 'center bottom',
-            //     of: $('#slider-price a:eq(1)'),
-            //     offset: "0, 10"
-            // });
         }
         init();
-        //console.log(vm.radius);
 
         function backButton() {
             $location.url("/");
@@ -152,7 +111,6 @@
                 .logout()
                 .then(function (response) {
                     location.reload();
-                    // $location.url("search/product/"+productName+"/location/"+location);
                 });
         }
 
@@ -190,19 +148,6 @@
             }
         }
 
-        // function sortedSearch(productName, location, radius, sortMode) {
-        //     if(sortMode === "distance"){
-        //
-        //     } else if(sortMode === "price_asc") {
-        //         SearchService
-        //             .search
-        //     } else if(sortMode === "price_desc") {
-        //
-        //     } else {
-        //         console.log("Do Nothing");
-        //     }
-        // }
-
         function displayStoreInfo(searchResult) {
             vm.userLocation = searchResult.userLocation;
             vm.goodzerResults = JSON.parse(searchResult.goodzerResults);
@@ -233,8 +178,6 @@
                     i = i + 1;
                 }
             }
-
-            console.log(vm.goodzerResults);
         }
 
         function googleMapHandler() {
@@ -271,7 +214,6 @@
                     //console.log(response);
                     vm.location = response.results[0].formatted_address;
                     $location.url("/search/product/"+vm.productName+"/location/"+vm.location+"/radius/"+vm.radius+"/sorting/"+vm.sorting+"/price/"+vm.price);
-                    //console.log(vm.location);
                 })
                 .error(function (error) {
                     console.log(error);
@@ -350,7 +292,6 @@
                 .incrementViews(vm.product, storeId, views)
                 .success(function (response) {
                     console.log("success in increment views");
-                    console.log(response);
                 })
                 .error(function (error) {
                     console.log("error in increment views")
@@ -483,21 +424,17 @@
                                 .addActorToProductComments(actor._id, vm.product, vm.text, new Date(), storeId)
                                 .success(function (response) {
                                     console.log("success in comment");
-                                    console.log(response);
                                     getProduct(actor);
                                 })
                                 .error(function (error) {
-                                    console.log("error");
                                     console.log(error);
                                 });
                             ActorService
                                 .addProductToActorComments(actor._id, productId, vm.text, new Date())
                                 .success(function (response) {
                                     console.log("success");
-                                    console.log(response);
                                 })
                                 .error(function (error) {
-                                    console.log("error");
                                     console.log(error);
                                 });
                             vm.text = null;
@@ -516,7 +453,6 @@
                         }
                         else {
                             var flag = 0;
-                            console.log(vm.likes);
                             for(var l in vm.likes) {
                                 if(vm.likes[l] == actor._id) {
                                     flag = 1;
@@ -528,22 +464,18 @@
                                     .addActorToProductLikes(actor._id, vm.product, storeId)
                                     .success(function (response) {
                                         console.log("success in like");
-                                        console.log(response);
                                         getProduct(actor);
                                     })
                                     .error(function (error) {
                                         console.log("error");
-                                        console.log(error);
                                     });
 
                                 ActorService
                                     .addProductToActorComments(actor._id, productId)
                                     .success(function (response) {
                                         console.log("success");
-                                        console.log(response);
                                     })
                                     .error(function (error) {
-                                        console.log("error");
                                         console.log(error);
                                     });
                             }
@@ -567,22 +499,18 @@
                                     ProductService
                                         .removeActorFromProductFavourites(actor._id, response)
                                         .success(function (response) {
-                                            console.log("success");
                                             getProduct(actor);
                                         })
                                         .error(function (error) {
-                                            console.log("error");
                                             console.log(error);
                                         });
 
                                     ActorService
                                         .removeProductFromActorFavourites(actor, productId)
                                         .success(function (response) {
-                                            console.log("success");
                                             console.log(response);
                                         })
                                         .error(function (error) {
-                                            console.log("error");
                                             console.log(error);
                                         });
                                 })
@@ -609,12 +537,9 @@
                             ProductService
                                 .addActorToProductFavourites(actor._id, vm.product, storeId)
                                 .success(function (response) {
-                                    console.log("success");
-                                    console.log(response);
                                     getProduct(actor);
                                 })
                                 .error(function (error) {
-                                    console.log("error");
                                     console.log(error);
                                 });
 
@@ -622,10 +547,8 @@
                                 .addProductToActorFavourites(actor._id, productId)
                                 .success(function (response) {
                                     console.log("success");
-                                    console.log(response);
                                 })
                                 .error(function (error) {
-                                    console.log("error");
                                     console.log(error);
                                 });
                         }

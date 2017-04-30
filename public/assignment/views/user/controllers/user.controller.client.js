@@ -23,7 +23,7 @@
                 var promise = UserService.findUserByCredentials(user.username, user.password);
                 promise
                     .success(function (loginUser) {
-                        $location.url("/actor/" + loginUser._id);
+                        $location.url("/user/" + loginUser._id);
                     })
                     .error(function () {
                         vm.alert = "Unable to login";
@@ -47,7 +47,7 @@
                         UserService
                             .createUser(newUser)
                             .success(function (user) {
-                                $location.url('/actor/' + user._id);
+                                $location.url('/user/' + user._id);
                             })
                             .error(function () {
                                 vm.error = "Could not Register User. Server not responding!"

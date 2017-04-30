@@ -1,5 +1,5 @@
- <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-     <div class="container-fluid">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="#/">ShopSmart</a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -23,42 +23,43 @@
         </div>
     </div>
 </nav>
- <div id="search" class="container page-content bg-1">
-     <div class="main-search-panel">
-        <div class="row">
-            <div class="col-md-6" style="padding: 20px">
-                <img src="images/ShopSmartlogo.png" width="350px" height="150px">
-            </div>
-             <div class="col-md-6 panel panel-default">
-                 <div class="panel-heading">Search</div>
-                 <div class="panel-body">
-                     <form>
-                         <div class="input-group">
-                             <input ng-model="model.productName" id="productName" type="text" class="form-control" name="productName" placeholder="Type in a Product Name">
-                         </div>
-                         <div class="input-group inp">
-                             <input ng-model="model.location" id="location" type="location" class="form-control" name="location" placeholder="Type in a location">
-                         </div>
-                         <div class="input-group">
-                         <button ng-click="model.search(model.productName, model.location)" class="w3-btn w3-pink">Search</button>
-                         </div>
-                     </form>
-                 </div>
-             </div>
-        </div>
-     </div>
- </div>
 
-  <div class="scroller-wrapper">
+<div id="search" class="container page-content bg-1">
+ <div class="main-search-panel">
+    <div class="row">
+        <div class="col-md-6" style="padding: 20px">
+            <img src="images/ShopSmartlogo.png" width="350px" height="150px">
+        </div>
+         <div class="col-md-6 panel panel-default">
+             <div class="panel-heading">Search</div>
+             <div class="panel-body">
+                 <form>
+                     <div class="input-group">
+                         <input ng-model="model.productName" id="productName" type="text" class="form-control" name="productName" placeholder="Type in a Product Name">
+                     </div>
+                     <div class="input-group inp">
+                         <input ng-model="model.location" id="location" type="location" class="form-control" name="location" placeholder="Type in a location">
+                     </div>
+                     <div class="input-group">
+                     <button ng-click="model.search(model.productName, model.location)" class="w3-btn w3-pink">Search</button>
+                     </div>
+                 </form>
+             </div>
+         </div>
+    </div>
+ </div>
+</div>
+
+<div class="scroller-wrapper hidden-xs">
      <a class="scroller scroller-1">
          <span class="fa-stack fa-2x">
             <i class="white-text fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-angle-double-down fa-stack-1x"></i>
         </span>
      </a>
- </div>
+</div>
 
- <div id="about" class="container bg-2">
+<div id="about" class="container bg-2">
      <h1>About</h1>
      <div style="padding-top: 5%">
          <h3>ShopSmart gives you access to</h3>
@@ -71,54 +72,13 @@
          <h4>Store Owners can register for their stores on ShopSmart and learn about</h4>
          <h4>the popularity of their products and stores.</h4>
      </div>
-     <div class="scroller-wrapper">
-         <a class="scroller scroller-2" id="scroller-2">
-             <span class="fa-stack fa-2x">
-                <i class="white-text fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-angle-double-down fa-stack-1x"></i>
-            </span>
-         </a>
-     </div>
- </div>
 
- <div id="contact-us" class="container bg-3">
-     <h1 class="margin">Contact Us</h1>
-     <div class="row" style="padding-top: 5%">
-         <div class="col-sm-6">
-             <img src="images/ashtondp.JPG" class="img-circle" align="center" width="200px" height="200px">
-             <div class="blank-lines-40px"></div>
-             <h1>Ashton Vaz</h1>
-             <h3>Email: vaz.a@husky.neu.edu</h3>
-         </div>
-         <div class="col-sm-6">
-             <img src="images/darshandp.jpg" class="img-circle" align="center" width="200px" height="200px">
-             <div class="blank-lines-40px"></div>
-             <h1>Darshan Panse</h1>
-             <h3>Email: panse.d@husky.neu.edu</h3>
-         </div>
-     </div>
-     <div class="scroller-wrapper hidden-xs">
-         <a class="scroller" id="scroller-3">
-             <span class="fa-stack fa-2x">
-                <i class="white-text fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-angle-double-up fa-stack-1x"></i>
-            </span>
-         </a>
-     </div>
- </div>
-
- <!--<div class="parallax"></div>-->
-
-<!--<div style="text-align: center">-->
-    <!--<div class="container">-->
-        <!--<a class="btn btn-circle">-->
-            <!--<i class="fa fa-angle-double-down animated"></i>-->
-        <!--</a>-->
-    <!--</div>-->
-<!--</div>-->
-
- <!--<div style="height:1000px;background-color:red;font-size:36px">-->
-     <!--Scroll Up and Down this page to see the parallax scrolling effect.-->
-     <!--This div is just here to enable scrolling.-->
-     <!--Tip: Try to remove the background-attachment property to remove the scrolling effect.-->
- <!--</div>-->
+    <div class="scroller-wrapper hidden-xs">
+        <a class="scroller" id="scroller-3">
+         <span class="fa-stack fa-2x">
+            <i class="white-text fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-angle-double-up fa-stack-1x"></i>
+        </span>
+        </a>
+    </div>
+</div>
